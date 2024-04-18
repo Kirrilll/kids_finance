@@ -12,14 +12,12 @@ class LessonsListWidget extends StatelessWidget {
     return Container(
       height: 400,
       child: ListView.builder(
-        scrollDirection:
-            Axis.vertical, // Устанавливаем горизонтальную прокрутку
+        scrollDirection: Axis.vertical,
         itemCount: lessons.length,
         itemBuilder: (BuildContext context, int index) {
           final lesson = lessons[index];
           return Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: 20.0), // Добавляем небольшие отступы между уроками
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: LessonWidget(
               isProgress: lesson.isProgress,
               headName: lesson.headName,
