@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:kids_finance/features/presentation/widgets/LessonWidget.dart';
-import 'package:kids_finance/features/presentation/widgets/lesson_data.dart';
+import 'course_card.dart';
+import 'lesson_data.dart';
 
-class LessonsListWidget extends StatelessWidget {
+
+class CoursesList extends StatelessWidget {
   final List<LessonData> lessons;
 
-  const LessonsListWidget({Key? key, required this.lessons}) : super(key: key);
+  const CoursesList({super.key, required this.lessons});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 400,
       child: ListView.builder(
         scrollDirection: Axis.vertical,
@@ -18,7 +19,7 @@ class LessonsListWidget extends StatelessWidget {
           final lesson = lessons[index];
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            child: LessonWidget(
+            child: CourseCard(
               isProgress: lesson.isProgress,
               headName: lesson.headName,
               subString: lesson.subString,
