@@ -214,8 +214,21 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
+  flutter_svg:
+    dependency: "direct main"
+    description:
+      name: flutter_svg
+      sha256: "9ac1967e2f72a08af11b05b39167920f90d043cf67163d13a544a358c8f31afa"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.22.0"
   flutter_test:
     dependency: "direct dev"
+    description: flutter
+    source: sdk
+    version: "0.0.0"
+  flutter_web_plugins:
+    dependency: transitive
     description: flutter
     source: sdk
     version: "0.0.0"
@@ -243,6 +256,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.0"
+  get_it:
+    dependency: "direct main"
+    description:
+      name: get_it
+      sha256: d85128a5dae4ea777324730dc65edd9c9f43155c109d5cc0a69cab74139fbac1
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.7.0"
   glob:
     dependency: transitive
     description:
@@ -251,6 +272,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+  go_router:
+    dependency: "direct main"
+    description:
+      name: go_router
+      sha256: "771c8feb40ad0ef639973d7ecf1b43d55ffcedb2207fd43fab030f5639e40446"
+      url: "https://pub.dev"
+    source: hosted
+    version: "13.2.4"
   graphs:
     dependency: transitive
     description:
@@ -283,6 +312,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  injectable:
+    dependency: "direct main"
+    description:
+      name: injectable
+      sha256: "3d98967224a5fdd4094a61bf53ed9616c3fbcf3e090bf83e7cb7d436d0c20041"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.1"
+  injectable_generator:
+    dependency: "direct main"
+    description:
+      name: injectable_generator
+      sha256: "2ca3ada337eac0ef6b82f8049c970ddb63947738fdf32ac6cbef8d1567d7ba05"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.6.1"
   io:
     dependency: transitive
     description:
@@ -395,6 +440,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.0"
+  path_drawing:
+    dependency: transitive
+    description:
+      name: path_drawing
+      sha256: "3bdd251dae9ffaef944450b73f168610db7e968e7b20daf0c3907f8b4aafc8a2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.1+1"
+  path_parsing:
+    dependency: transitive
+    description:
+      name: path_parsing
+      sha256: ee5c47c1058ad66b4a41746ec3996af9593d0858872807bcd64ac118f0700337
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.1"
+  petitparser:
+    dependency: transitive
+    description:
+      name: petitparser
+      sha256: cb3798bef7fc021ac45b308f4b51208a152792445cce0448c9a4ba5879dd8750
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.4.0"
   pool:
     dependency: transitive
     description:
@@ -419,6 +488,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.3"
+  recase:
+    dependency: transitive
+    description:
+      name: recase
+      sha256: e4eb4ec2dcdee52dcf99cb4ceabaffc631d7424ee55e56f280bc039737f89213
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.0"
   shelf:
     dependency: transitive
     description:
@@ -560,6 +637,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.4"
+  xml:
+    dependency: transitive
+    description:
+      name: xml
+      sha256: "80d494c09849dc3f899d227a78c30c5b949b985ededf884cb3f3bcd39f4b447a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.4.1"
   yaml:
     dependency: transitive
     description:
@@ -570,3 +655,4 @@ packages:
     version: "3.1.2"
 sdks:
   dart: ">=3.3.1 <4.0.0"
+  flutter: ">=3.16.0"
