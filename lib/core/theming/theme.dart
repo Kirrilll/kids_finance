@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kids_finance/core/constants.dart';
 
-ThemeData lightTheme() => ThemeData(
+part 'elevated_button_theme_data.dart';
+part 'color_scheme.dart';
+
+final lightTheme = ThemeData(
       brightness: Brightness.light,
-      backgroundColor: kSecondaryColor,
+      // backgroundColor: kSecondaryColor,
       primaryColor: kPrimaryColor,
       textTheme: const TextTheme(
         headlineLarge: TextStyle(
@@ -40,4 +43,6 @@ ThemeData lightTheme() => ThemeData(
       ),
       cardColor: kPrimaryColor,
       scaffoldBackgroundColor: kSecondaryColor,
+      elevatedButtonTheme: _lightElevatedButtonTheme,
+      colorScheme: _lightScheme
     );
