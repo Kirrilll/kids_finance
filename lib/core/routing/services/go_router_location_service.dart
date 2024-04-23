@@ -1,24 +1,15 @@
 import 'package:flutter/src/widgets/router.dart';
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kids_finance/core/routing/routes.dart';
+import '../utils/route_guard_base.dart';
 import 'location_service_base.dart';
 
-@Singleton(as: LocationServiceBase)
 class GoRouterLocationService implements LocationServiceBase {
 
-  static GoRouterLocationService? _instance;
   late final GoRouter _router;
 
-  GoRouterLocationService._();
-
-  static GoRouterLocationService get instance {
-    _instance ??= GoRouterLocationService._();
-    return _instance ?? GoRouterLocationService._();
-  }
-
-  // init(Map<Guards, RouteGuardBase> guards) {
-  //   _router = buildRouter(guards);
-  // }
+  GoRouterLocationService({required List<RouteGuardBase> guards}): _router = configureRouter(guards);
 
   @override
   String get currLocation => _router.routerDelegate.currentConfiguration.uri.toString();

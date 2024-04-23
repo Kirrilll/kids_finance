@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kids_finance/core/routing/constants/path_params_constants.dart';
+import 'package:kids_finance/core/routing/utils/route_guard_base.dart';
 import 'package:kids_finance/features/courses/presentation/pages/course_page.dart';
 import 'package:kids_finance/features/courses/presentation/pages/courses_page.dart';
 import 'package:kids_finance/features/courses/presentation/pages/lesson_page.dart';
@@ -35,10 +36,18 @@ Page buildPageWithDefaultTransition<T>({
   );
 }
 
-GoRouter router = GoRouter(
+GoRouter configureRouter(List<RouteGuardBase> guards) => GoRouter(
+    refreshListenable: Listenable.merge(guards.map((guard) => guard.listenable).toList()),
+    redirect: (_, state) async {
+      for(final guard in guards) {
+        final redirectRes = await guard.redirect(state);
+        if(redirectRes != null) return redirectRes;
+      }
+      return null;
+    },
     routes: [
       GoRoute(
-          path: unboardingPath,
+          path: onBoardingPath,
           name: unboarding,
           pageBuilder: (context, state) => buildPageWithDefaultTransition(
               context: context,
