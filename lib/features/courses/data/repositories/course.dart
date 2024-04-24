@@ -17,25 +17,26 @@ abstract class CourseRepository {
 
 @Injectable(as: CourseRepository, env: [Environment.dev])
 class DefaultCourseRepository implements CourseRepository {
-  DefaultCourseRepository(
-      {this.dataSource,
-      this.courseMapper,
-      this.progressDataSource,
-      this.progressMapper});
+  DefaultCourseRepository({
+    required this.dataSource,
+    required this.courseMapper,
+    required this.progressDataSource,
+    required this.progressMapper
+  });
 
-  final CourseProgressMapper? progressMapper;
-  final CourseMapper? courseMapper;
-  final CourseDataSource? dataSource;
-  final CourseProgressDataSource? progressDataSource;
+  final CourseProgressMapper progressMapper;
+  final CourseMapper courseMapper;
+  final CourseDataSource dataSource;
+  final CourseProgressDataSource progressDataSource;
 
   @override
   Future<Course?> selectById(int courseId) async {
-    var courseDto = await dataSource!.selectById(courseId);
+    final courseDto = await dataSource!.selectById(courseId);
     var progressDto = await progressDataSource!.selectByCourseId(courseId);
 
     progressDto ??= CourseProgressDTO(
         courseId: courseDto.id,
-        lastLesson: LessonProgressDTO(lessonIndex: 0, lastChapterIndex: 0));
+        lastLesson: const LessonProgressDTO(lessonIndex: 0, lastChapterIndex: 0));
 
     var course = courseMapper!.convertDTO(courseDto, progressDto!);
 
@@ -44,28 +45,26 @@ class DefaultCourseRepository implements CourseRepository {
 
   @override
   Future<List<Course>> selectAll() async {
-    var courses = await dataSource!.selectAll();
-    var progress = await progressDataSource!.selectAll();
+    var courses = await dataSource.selectAll();
+    var progress = await progressDataSource.selectAll();
 
-    progress = progress.map((e) => e as CourseProgressDTO).toList();
+    progress = progress.map((e) => e).toList();
     List<Course> result = [];
     for (var i = 0; i < courses!.length; i++) {
-      CourseProgressDTO? prog = null;
+      CourseProgressDTO? prog;
       for (var j = 0; j < progress.length; j++) {
         if (progress[j].courseId == courses[i].id) {
           prog = progress[j];
           break;
         }
       }
-      if (prog == null) {
-        prog = CourseProgressDTO(
+      prog ??= CourseProgressDTO(
             courseId: courses[i].id,
-            lastLesson: LessonProgressDTO(
+            lastLesson: const LessonProgressDTO(
               lessonIndex: 0,
               lastChapterIndex: 0,
             ));
-      }
-      result.add(courseMapper!.convertDTO(courses[i], prog) as Course);
+      result.add(courseMapper.convertDTO(courses[i], prog));
     }
     return Future(() => result);
   }
@@ -82,7 +81,6 @@ class DefaultCourseRepository implements CourseRepository {
 
   @override
   Future<void> save(CourseProgress progress) async {
-    return progressDataSource!
-        .insertOrUpdate(progress.courseId, progressMapper!.convert(progress));
+    return progressDataSource.insertOrUpdate(progress.courseId, progressMapper.convert(progress));
   }
 }

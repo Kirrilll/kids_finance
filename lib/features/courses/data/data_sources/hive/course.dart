@@ -15,7 +15,7 @@ abstract class CourseDataSource {
 
 @Singleton(as: CourseDataSource, env: [Environment.prod], signalsReady: true)
 class HiveCourseDataSource implements CourseDataSource {
-  HiveCourseDataSource() {}
+  HiveCourseDataSource();
 
   @PostConstruct()
   void init() async {
@@ -72,7 +72,7 @@ class MockCourseDataSource implements CourseDataSource {
         logo: "logo",
         description: "description",
         lessons: [
-          LessonDTO(header: "header", logo: "logo", chapters: [
+          const LessonDTO(header: "header", logo: "logo", chapters: [
             ChapterDTO(content: "content", duration: Duration(minutes: 1))
           ])
         ]));
@@ -91,7 +91,7 @@ class MockCourseDataSource implements CourseDataSource {
 
   @override
   Future<CourseDTO> selectById(int courseId) async {
-    var elements = await selectAll();
+    final elements = await selectAll();
 
     return Future(
         () => elements!.firstWhere((element) => element.id == courseId));
