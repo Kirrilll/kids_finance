@@ -5,7 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kids_finance/features/courses/domain/entity/course.dart';
 import 'package:kids_finance/features/courses/presentation/widgets/icon_types.dart';
 
-//Кол-во уроко, средняя продолжительность
 class CourseCard extends StatelessWidget {
   final int progress;
   final String title;

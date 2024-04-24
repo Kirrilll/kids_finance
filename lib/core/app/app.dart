@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kids_finance/core/routing/providers/router_providers.dart';
 import 'package:kids_finance/core/routing/routes.dart';
 import 'package:kids_finance/core/theming/theme.dart';
