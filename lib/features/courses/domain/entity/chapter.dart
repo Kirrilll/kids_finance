@@ -6,7 +6,7 @@ part 'chapter.freezed.dart';
 class Chapter with _$Chapter{
   const factory Chapter(
     {
-      required String text,
+      required String content,
       required Duration duration,
   }) = _Chapter;
 }

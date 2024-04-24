@@ -23,9 +23,9 @@ class CoursesPage extends StatelessWidget {
             ),
             CoursesBlockHorizontal(
                 courses: [
-                  Course(id: 1, header: 'Контроль раскходов', logo: 'assets/images/28.png', description: '2ч 30 мин.', units: []),
-                  Course(id: 2, header: 'Контроль раскходов', logo: 'assets/images/28.png', description: '2ч 30 мин.', units: []),
-                  Course(id: 3, header: 'Контроль раскходов', logo: 'assets/images/28.png', description: '2ч 30 мин.', units: [])
+                  Course(id: 1, header: 'Контроль раскходов', logo: 'assets/images/28.png', description: '2ч 30 мин.', lessons: []),
+                  // Course(id: 2, header: 'Контроль раскходов', logo: 'assets/images/28.png', description: '2ч 30 мин.', units: []),
+                  // Course(id: 3, header: 'Контроль раскходов', logo: 'assets/images/28.png', description: '2ч 30 мин.', units: [])
                 ],
                 blockTitle: 'Основы финансовой грамматности'
             )

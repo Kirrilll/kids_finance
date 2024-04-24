@@ -20,7 +20,7 @@ class CoursesList extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: CourseCard(
-              progress: course.currentChapter,
+              progress: course.progress?.lastLesson.lastChapterIndex ?? 0,
               title: course.header,
               logo: course.logo,
               course: course,

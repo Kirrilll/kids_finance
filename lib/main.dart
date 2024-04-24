@@ -8,12 +8,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter((await getApplicationCacheDirectory()).path);
+  // await configureDependencies(Environment.dev);
+  // await getIt.allReady();
   runApp(
     ScreenUtilInit(
       designSize: const Size(360, 690),
       fontSizeResolver: FontSizeResolvers.height,
       minTextAdapt: true,
-      builder: (BuildContext context, Widget? child) => const ProviderScope(child: App()),
+      builder: (BuildContext context, Widget? child) =>
+      const ProviderScope(child: App()),
     ),
   );
 }

@@ -20,7 +20,7 @@ class CourseCard extends StatelessWidget {
     required this.logo,
     required this.icons,
   }) : subTitle =
-            '${course.units.length} по ${course.duration.inMinutes ~/ course.units.length} минут';
+            '${course.lessons.length} по ${course.duration.inMinutes ~/ course.lessons.length} минут';
 
   @override
   Widget build(BuildContext context) {
