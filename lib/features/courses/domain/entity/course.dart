@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
-import 'package:kids_finance/features/courses/domain/entity/course_unit.dart';
+import 'package:kids_finance/features/courses/domain/entity/course_progress.dart';
+import 'package:kids_finance/features/courses/domain/entity/lesson.dart';
 part 'course.freezed.dart';
 
 @freezed
@@ -12,11 +13,11 @@ class Course with _$Course {
     required String header,
     required String logo,
     required String description,
-    required List<CourseUnit> units,
-    @Default(0) int currentChapter
+    required List<Lesson> lessons,
+    CourseProgress? progress
   }) = _Course;
 
-  Duration get duration => units
+  Duration get duration => lessons
   .map((e) => e.duration)
   .reduce((value, element) => Duration (minutes: value.inMinutes + element.inMinutes));
 }

@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Chapter {
-  String get text => throw _privateConstructorUsedError;
+  String get content => throw _privateConstructorUsedError;
   Duration get duration => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -28,7 +28,7 @@ abstract class $ChapterCopyWith<$Res> {
   factory $ChapterCopyWith(Chapter value, $Res Function(Chapter) then) =
       _$ChapterCopyWithImpl<$Res, Chapter>;
   @useResult
-  $Res call({String text, Duration duration});
+  $Res call({String content, Duration duration});
 }
 
 /// @nodoc
@@ -44,13 +44,13 @@ class _$ChapterCopyWithImpl<$Res, $Val extends Chapter>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? text = null,
+    Object? content = null,
     Object? duration = null,
   }) {
     return _then(_value.copyWith(
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
               as String,
       duration: null == duration
           ? _value.duration
@@ -67,7 +67,7 @@ abstract class _$$ChapterImplCopyWith<$Res> implements $ChapterCopyWith<$Res> {
       __$$ChapterImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String text, Duration duration});
+  $Res call({String content, Duration duration});
 }
 
 /// @nodoc
@@ -81,13 +81,13 @@ class __$$ChapterImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? text = null,
+    Object? content = null,
     Object? duration = null,
   }) {
     return _then(_$ChapterImpl(
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
               as String,
       duration: null == duration
           ? _value.duration
@@ -100,16 +100,16 @@ class __$$ChapterImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ChapterImpl with DiagnosticableTreeMixin implements _Chapter {
-  const _$ChapterImpl({required this.text, required this.duration});
+  const _$ChapterImpl({required this.content, required this.duration});
 
   @override
-  final String text;
+  final String content;
   @override
   final Duration duration;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Chapter(text: $text, duration: $duration)';
+    return 'Chapter(content: $content, duration: $duration)';
   }
 
   @override
@@ -117,7 +117,7 @@ class _$ChapterImpl with DiagnosticableTreeMixin implements _Chapter {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Chapter'))
-      ..add(DiagnosticsProperty('text', text))
+      ..add(DiagnosticsProperty('content', content))
       ..add(DiagnosticsProperty('duration', duration));
   }
 
@@ -126,13 +126,13 @@ class _$ChapterImpl with DiagnosticableTreeMixin implements _Chapter {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChapterImpl &&
-            (identical(other.text, text) || other.text == text) &&
+            (identical(other.content, content) || other.content == content) &&
             (identical(other.duration, duration) ||
                 other.duration == duration));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, text, duration);
+  int get hashCode => Object.hash(runtimeType, content, duration);
 
   @JsonKey(ignore: true)
   @override
@@ -143,11 +143,11 @@ class _$ChapterImpl with DiagnosticableTreeMixin implements _Chapter {
 
 abstract class _Chapter implements Chapter {
   const factory _Chapter(
-      {required final String text,
+      {required final String content,
       required final Duration duration}) = _$ChapterImpl;
 
   @override
-  String get text;
+  String get content;
   @override
   Duration get duration;
   @override

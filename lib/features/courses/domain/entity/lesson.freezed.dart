@@ -16,7 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Lesson {
-  int get id => throw _privateConstructorUsedError;
   String get header => throw _privateConstructorUsedError;
   String get logo => throw _privateConstructorUsedError;
   List<Chapter> get chapters => throw _privateConstructorUsedError;
@@ -32,11 +31,7 @@ abstract class $LessonCopyWith<$Res> {
       _$LessonCopyWithImpl<$Res, Lesson>;
   @useResult
   $Res call(
-      {int id,
-      String header,
-      String logo,
-      List<Chapter> chapters,
-      int currentChapter});
+      {String header, String logo, List<Chapter> chapters, int currentChapter});
 }
 
 /// @nodoc
@@ -52,17 +47,12 @@ class _$LessonCopyWithImpl<$Res, $Val extends Lesson>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? header = null,
     Object? logo = null,
     Object? chapters = null,
     Object? currentChapter = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       header: null == header
           ? _value.header
           : header // ignore: cast_nullable_to_non_nullable
@@ -91,11 +81,7 @@ abstract class _$$LessonImplCopyWith<$Res> implements $LessonCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id,
-      String header,
-      String logo,
-      List<Chapter> chapters,
-      int currentChapter});
+      {String header, String logo, List<Chapter> chapters, int currentChapter});
 }
 
 /// @nodoc
@@ -109,17 +95,12 @@ class __$$LessonImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? header = null,
     Object? logo = null,
     Object? chapters = null,
     Object? currentChapter = null,
   }) {
     return _then(_$LessonImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       header: null == header
           ? _value.header
           : header // ignore: cast_nullable_to_non_nullable
@@ -144,16 +125,13 @@ class __$$LessonImplCopyWithImpl<$Res>
 
 class _$LessonImpl extends _Lesson with DiagnosticableTreeMixin {
   const _$LessonImpl(
-      {required this.id,
-      required this.header,
+      {required this.header,
       required this.logo,
       required final List<Chapter> chapters,
       this.currentChapter = 0})
       : _chapters = chapters,
         super._();
 
-  @override
-  final int id;
   @override
   final String header;
   @override
@@ -172,7 +150,7 @@ class _$LessonImpl extends _Lesson with DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Lesson(id: $id, header: $header, logo: $logo, chapters: $chapters, currentChapter: $currentChapter)';
+    return 'Lesson(header: $header, logo: $logo, chapters: $chapters, currentChapter: $currentChapter)';
   }
 
   @override
@@ -180,7 +158,6 @@ class _$LessonImpl extends _Lesson with DiagnosticableTreeMixin {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Lesson'))
-      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('header', header))
       ..add(DiagnosticsProperty('logo', logo))
       ..add(DiagnosticsProperty('chapters', chapters))
@@ -192,7 +169,6 @@ class _$LessonImpl extends _Lesson with DiagnosticableTreeMixin {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LessonImpl &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.header, header) || other.header == header) &&
             (identical(other.logo, logo) || other.logo == logo) &&
             const DeepCollectionEquality().equals(other._chapters, _chapters) &&
@@ -201,7 +177,7 @@ class _$LessonImpl extends _Lesson with DiagnosticableTreeMixin {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, header, logo,
+  int get hashCode => Object.hash(runtimeType, header, logo,
       const DeepCollectionEquality().hash(_chapters), currentChapter);
 
   @JsonKey(ignore: true)
@@ -213,15 +189,12 @@ class _$LessonImpl extends _Lesson with DiagnosticableTreeMixin {
 
 abstract class _Lesson extends Lesson {
   const factory _Lesson(
-      {required final int id,
-      required final String header,
+      {required final String header,
       required final String logo,
       required final List<Chapter> chapters,
       final int currentChapter}) = _$LessonImpl;
   const _Lesson._() : super._();
 
-  @override
-  int get id;
   @override
   String get header;
   @override

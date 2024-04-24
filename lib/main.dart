@@ -1,13 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:get_it/get_it.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:injectable/injectable.dart';
+import 'package:kids_finance/core/di/container.config.dart';
+import 'package:kids_finance/core/di/container.dart';
 import 'package:kids_finance/core/theming/theme.dart';
 import 'package:kids_finance/core/presentation/panel.dart';
+import 'package:kids_finance/features/courses/data/data_sources/hive/course.dart';
+import 'package:kids_finance/features/courses/data/data_sources/hive/progress.dart';
+import 'package:kids_finance/features/courses/data/dtos/chapter.dart';
+import 'package:kids_finance/features/courses/data/dtos/course.dart';
+import 'package:kids_finance/features/courses/data/dtos/course_progress.dart';
+import 'package:kids_finance/features/courses/data/dtos/duration_adapter.dart';
+import 'package:kids_finance/features/courses/data/dtos/lesson.dart';
+import 'package:kids_finance/features/courses/data/dtos/lesson_progress.dart';
+import 'package:kids_finance/features/courses/data/mappers/chapter_mapper.dart';
+import 'package:kids_finance/features/courses/data/mappers/course_mapper.dart';
+import 'package:kids_finance/features/courses/data/mappers/lesson_mapper.dart';
+import 'package:kids_finance/features/courses/data/mappers/progress_mapper.dart';
+import 'package:kids_finance/features/courses/data/repositories/course.dart';
+import 'package:kids_finance/features/courses/domain/entity/course_progress.dart';
 
 import 'features/courses/presentation/widgets/courses_list.dart';
 import 'features/courses/presentation/widgets/lesson_data.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  await Hive.initFlutter();
+  await configureDependencies(Environment.dev);
+  await getIt.allReady();
+  Future.delayed(Duration.zero, () {
+    runApp(const MyApp());
+    var rep = getIt<CourseRepository>();
+    //test
+    rep.selectAll().then((value) => print(value[0].header));
+    rep.selectById(0).then((value) => print(value!.header));
+    rep.selectCompleted().then((value) => print(value.length));
+  });
 }
 
 class MyApp extends StatelessWidget {

@@ -20,8 +20,8 @@ mixin _$Course {
   String get header => throw _privateConstructorUsedError;
   String get logo => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  List<CourseUnit> get units => throw _privateConstructorUsedError;
-  int get currentChapter => throw _privateConstructorUsedError;
+  List<Lesson> get lessons => throw _privateConstructorUsedError;
+  CourseProgress? get progress => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CourseCopyWith<Course> get copyWith => throw _privateConstructorUsedError;
@@ -37,8 +37,8 @@ abstract class $CourseCopyWith<$Res> {
       String header,
       String logo,
       String description,
-      List<CourseUnit> units,
-      int currentChapter});
+      List<Lesson> lessons,
+      CourseProgress? progress});
 }
 
 /// @nodoc
@@ -58,8 +58,8 @@ class _$CourseCopyWithImpl<$Res, $Val extends Course>
     Object? header = null,
     Object? logo = null,
     Object? description = null,
-    Object? units = null,
-    Object? currentChapter = null,
+    Object? lessons = null,
+    Object? progress = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -78,14 +78,14 @@ class _$CourseCopyWithImpl<$Res, $Val extends Course>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      units: null == units
-          ? _value.units
-          : units // ignore: cast_nullable_to_non_nullable
-              as List<CourseUnit>,
-      currentChapter: null == currentChapter
-          ? _value.currentChapter
-          : currentChapter // ignore: cast_nullable_to_non_nullable
-              as int,
+      lessons: null == lessons
+          ? _value.lessons
+          : lessons // ignore: cast_nullable_to_non_nullable
+              as List<Lesson>,
+      progress: freezed == progress
+          ? _value.progress
+          : progress // ignore: cast_nullable_to_non_nullable
+              as CourseProgress?,
     ) as $Val);
   }
 }
@@ -102,8 +102,8 @@ abstract class _$$CourseImplCopyWith<$Res> implements $CourseCopyWith<$Res> {
       String header,
       String logo,
       String description,
-      List<CourseUnit> units,
-      int currentChapter});
+      List<Lesson> lessons,
+      CourseProgress? progress});
 }
 
 /// @nodoc
@@ -121,8 +121,8 @@ class __$$CourseImplCopyWithImpl<$Res>
     Object? header = null,
     Object? logo = null,
     Object? description = null,
-    Object? units = null,
-    Object? currentChapter = null,
+    Object? lessons = null,
+    Object? progress = freezed,
   }) {
     return _then(_$CourseImpl(
       id: null == id
@@ -141,14 +141,14 @@ class __$$CourseImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      units: null == units
-          ? _value._units
-          : units // ignore: cast_nullable_to_non_nullable
-              as List<CourseUnit>,
-      currentChapter: null == currentChapter
-          ? _value.currentChapter
-          : currentChapter // ignore: cast_nullable_to_non_nullable
-              as int,
+      lessons: null == lessons
+          ? _value._lessons
+          : lessons // ignore: cast_nullable_to_non_nullable
+              as List<Lesson>,
+      progress: freezed == progress
+          ? _value.progress
+          : progress // ignore: cast_nullable_to_non_nullable
+              as CourseProgress?,
     ));
   }
 }
@@ -161,9 +161,9 @@ class _$CourseImpl extends _Course with DiagnosticableTreeMixin {
       required this.header,
       required this.logo,
       required this.description,
-      required final List<CourseUnit> units,
-      this.currentChapter = 0})
-      : _units = units,
+      required final List<Lesson> lessons,
+      this.progress})
+      : _lessons = lessons,
         super._();
 
   @override
@@ -174,21 +174,20 @@ class _$CourseImpl extends _Course with DiagnosticableTreeMixin {
   final String logo;
   @override
   final String description;
-  final List<CourseUnit> _units;
+  final List<Lesson> _lessons;
   @override
-  List<CourseUnit> get units {
-    if (_units is EqualUnmodifiableListView) return _units;
+  List<Lesson> get lessons {
+    if (_lessons is EqualUnmodifiableListView) return _lessons;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_units);
+    return EqualUnmodifiableListView(_lessons);
   }
 
   @override
-  @JsonKey()
-  final int currentChapter;
+  final CourseProgress? progress;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Course(id: $id, header: $header, logo: $logo, description: $description, units: $units, currentChapter: $currentChapter)';
+    return 'Course(id: $id, header: $header, logo: $logo, description: $description, lessons: $lessons, progress: $progress)';
   }
 
   @override
@@ -200,8 +199,8 @@ class _$CourseImpl extends _Course with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('header', header))
       ..add(DiagnosticsProperty('logo', logo))
       ..add(DiagnosticsProperty('description', description))
-      ..add(DiagnosticsProperty('units', units))
-      ..add(DiagnosticsProperty('currentChapter', currentChapter));
+      ..add(DiagnosticsProperty('lessons', lessons))
+      ..add(DiagnosticsProperty('progress', progress));
   }
 
   @override
@@ -214,14 +213,14 @@ class _$CourseImpl extends _Course with DiagnosticableTreeMixin {
             (identical(other.logo, logo) || other.logo == logo) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            const DeepCollectionEquality().equals(other._units, _units) &&
-            (identical(other.currentChapter, currentChapter) ||
-                other.currentChapter == currentChapter));
+            const DeepCollectionEquality().equals(other._lessons, _lessons) &&
+            (identical(other.progress, progress) ||
+                other.progress == progress));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, id, header, logo, description,
-      const DeepCollectionEquality().hash(_units), currentChapter);
+      const DeepCollectionEquality().hash(_lessons), progress);
 
   @JsonKey(ignore: true)
   @override
@@ -236,8 +235,8 @@ abstract class _Course extends Course {
       required final String header,
       required final String logo,
       required final String description,
-      required final List<CourseUnit> units,
-      final int currentChapter}) = _$CourseImpl;
+      required final List<Lesson> lessons,
+      final CourseProgress? progress}) = _$CourseImpl;
   const _Course._() : super._();
 
   @override
@@ -249,9 +248,9 @@ abstract class _Course extends Course {
   @override
   String get description;
   @override
-  List<CourseUnit> get units;
+  List<Lesson> get lessons;
   @override
-  int get currentChapter;
+  CourseProgress? get progress;
   @override
   @JsonKey(ignore: true)
   _$$CourseImplCopyWith<_$CourseImpl> get copyWith =>
