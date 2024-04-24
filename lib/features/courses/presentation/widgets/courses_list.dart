@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:kids_finance/features/courses/domain/entity/course.dart';
 import 'course_card.dart';
 import 'lesson_data.dart';
 
-
 class CoursesList extends StatelessWidget {
-  final List<LessonData> lessons;
+  final List<Course> courses;
 
-  const CoursesList({super.key, required this.lessons});
+  const CoursesList({super.key, required this.courses});
 
   @override
   Widget build(BuildContext context) {
@@ -14,17 +14,17 @@ class CoursesList extends StatelessWidget {
       height: 400,
       child: ListView.builder(
         scrollDirection: Axis.vertical,
-        itemCount: lessons.length,
+        itemCount: courses.length,
         itemBuilder: (BuildContext context, int index) {
-          final lesson = lessons[index];
+          final course = courses[index];
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: CourseCard(
-              isProgress: lesson.isProgress,
-              headName: lesson.headName,
-              subString: lesson.subString,
-              imageURL: lesson.imageURL,
-              iconURLs: lesson.iconURLs,
+              progress: course.currentChapter,
+              title: course.header,
+              logo: course.logo,
+              course: course,
+              icons: const {},
             ),
           );
         },
