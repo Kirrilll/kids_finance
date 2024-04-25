@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kids_finance/features/courses/domain/entity/course.dart';
 import 'course_card.dart';
-import 'lesson_data.dart';
 
 class CoursesList extends StatelessWidget {
   final List<Course> courses;
@@ -15,19 +14,10 @@ class CoursesList extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.vertical,
         itemCount: courses.length,
-        itemBuilder: (BuildContext context, int index) {
-          final course = courses[index];
-          return Padding(
+        itemBuilder: (BuildContext context, int index) => Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            child: CourseCard(
-              progress: course.progress?.lastLesson.lastChapterIndex ?? 0,
-              title: course.header,
-              logo: course.logo,
-              course: course,
-              icons: const {},
-            ),
-          );
-        },
+            child: CourseCard.fromCourse(courses[index]),
+          ),
       ),
     );
   }

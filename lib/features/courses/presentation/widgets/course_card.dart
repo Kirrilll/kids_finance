@@ -1,31 +1,38 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kids_finance/features/courses/domain/entity/course.dart';
-import 'package:kids_finance/features/courses/presentation/widgets/icon_types.dart';
+import '../../domain/entity/e_course_passing_type.dart';
+import 'package:kids_finance/features/courses/presentation/widgets/course_info.dart';
 
 class CourseCard extends StatelessWidget {
   final int progress;
   final String title;
   final String subTitle;
   final String logo;
-  final Map<ECoursePassingType, Widget> icons;
+  final List<ECoursePassingType> passingTypes;
+  final bool isLoading;
 
-  CourseCard({
+  const CourseCard({
     super.key,
     required this.progress,
     required this.title,
-    required Course course,
+    required this.subTitle,
     required this.logo,
-    required this.icons,
-  }) : subTitle =
-            '${course.lessons.length} по ${course.duration.inMinutes ~/ course.lessons.length} минут';
+    required this.passingTypes,
+    this.isLoading = false
+  });
+
+  factory CourseCard.fromCourse(Course course) => CourseCard(
+      progress: course.progress?.lastLesson.lastChapterIndex ?? 0,
+      title: course.header,
+      subTitle: '${course.lessons.length} по ${course.duration.inMinutes ~/ course.lessons.length} минут',
+      logo: course.logo,
+      passingTypes: const [ECoursePassingType.read]
+  );
+
+  factory CourseCard.loading() => const CourseCard(progress: 0, title: '', subTitle: '', logo: '', passingTypes: [], isLoading: true);
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle? headStyle = Theme.of(context).textTheme.headlineSmall;
-    final TextStyle? subStyle = Theme.of(context).textTheme.displayMedium;
     return Padding(
       padding: const EdgeInsets.all(8),
       child: Container(
@@ -47,31 +54,7 @@ class CourseCard extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 11),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: icons.entries.map((entry) {
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 8),
-                          child: entry.value,
-                        );
-                      }).toList(),
-                    ),
-                    const SizedBox(height: 6),
-                    FittedBox(child: Text(title, style: headStyle)),
-                    const SizedBox(height: 6),
-                    FittedBox(
-                      child: Text(
-                        subTitle,
-                        style: subStyle,
-                      ),
-                    ),
-                  ],
-                ),
+                child: CourseInfo(title: title, subTitle: subTitle, passingTypes: passingTypes)
               ),
             ),
           ],

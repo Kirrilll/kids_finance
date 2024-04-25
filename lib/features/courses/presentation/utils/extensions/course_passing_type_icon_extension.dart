@@ -1,6 +1,5 @@
+import '../../../domain/entity/e_course_passing_type.dart';
 import 'package:flutter/material.dart';
-
-enum ECoursePassingType { listen, read, watch }
 
 extension ECoursePassingTypeIcon on ECoursePassingType {
   Widget get icon {
@@ -26,3 +25,4 @@ extension ECoursePassingTypeIcon on ECoursePassingType {
     }
   }
 }
+

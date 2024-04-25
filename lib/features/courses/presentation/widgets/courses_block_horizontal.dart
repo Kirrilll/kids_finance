@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kids_finance/core/presentation/panel.dart';
-import 'package:kids_finance/features/courses/presentation/widgets/course_card_block.dart';
+import 'package:kids_finance/features/courses/presentation/widgets/animated_course_card.dart';
 
 import '../../domain/entity/course.dart';
 
@@ -11,11 +11,16 @@ class CoursesBlockHorizontal extends StatelessWidget {
 
   final List<Course> courses;
   final String blockTitle;
+  final bool isLoading;
+
   const CoursesBlockHorizontal({
     super.key,
     required this.courses,
-    required this.blockTitle
+    required this.blockTitle,
+    this.isLoading = false
   });
+
+  factory CoursesBlockHorizontal.loading() => const CoursesBlockHorizontal(courses: [], blockTitle: '', isLoading: true);
 
   @override
   Widget build(BuildContext context) {
