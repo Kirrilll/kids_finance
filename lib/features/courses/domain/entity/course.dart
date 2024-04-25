@@ -17,7 +17,10 @@ class Course with _$Course {
     CourseProgress? progress
   }) = _Course;
 
-  Duration get duration => lessons
-  .map((e) => e.duration)
-  .reduce((value, element) => Duration (minutes: value.inMinutes + element.inMinutes));
+  Duration get duration {
+    if(lessons.isEmpty) return const Duration(minutes: 0);
+  return lessons
+      .map((e) => e.duration)
+      .reduce((value, element) => Duration (minutes: value.inMinutes + element.inMinutes));
+  }
 }

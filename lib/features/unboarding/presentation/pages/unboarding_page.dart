@@ -18,9 +18,9 @@ class _UnboardingPageState extends State<UnboardingPage> {
   final ValueNotifier<int> _currPageNotifier = ValueNotifier(0);
 
   final _unboardingElements = [
-    SvgPicture.asset('assets/images/unboarding_p1.svg'),
-    SvgPicture.asset('assets/images/unboarding_p2.svg'),
-    SvgPicture.asset('assets/images/unboarding_p3.svg'),
+    Image.asset('assets/images/on_boarding1.png', filterQuality: FilterQuality.high, fit: BoxFit.fill,),
+    Image.asset('assets/images/on_boarding2.png', filterQuality: FilterQuality.high, fit: BoxFit.fill,),
+    Image.asset('assets/images/on_boarding3.png', filterQuality: FilterQuality.high, fit: BoxFit.fill,)
   ];
 
   void Function() _buildOnContinue(int index, Future<void> Function() onFinish ) => () {

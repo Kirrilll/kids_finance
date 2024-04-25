@@ -8,7 +8,7 @@ class Panel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(16.0, 0, 16.0, 0),
+      padding:  const EdgeInsets.all(12.0),
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -16,10 +16,7 @@ class Panel extends StatelessWidget {
       constraints: const BoxConstraints(
         minHeight: 70,
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: child,
-      ),
+      child: child,
     );
   }
 }

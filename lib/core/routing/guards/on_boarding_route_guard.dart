@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/foundation/change_notifier.dart';
 import 'package:go_router/src/state.dart';
 import 'package:kids_finance/core/routing/constants/name_constants.dart';
@@ -16,8 +17,8 @@ class OnBoardingRouteGuard implements RouteGuardBase {
   @override
   Future<String?> redirect(GoRouterState state) async {
     return listenable.value.map(
-        initial: (_) => coursesPath,
-        passed: (_) => coursesPath,
+        initial: (_) => null,
+        passed: (_) => state.uri.toString() == onBoardingPath ? coursesPath : null,
         passing: (_) => null,
         notPassed: (_) => onBoardingPath
     );

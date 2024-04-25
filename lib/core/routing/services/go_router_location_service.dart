@@ -32,6 +32,4 @@ class GoRouterLocationService implements LocationServiceBase {
   void pop() {
     return _router.pop();
   }
-
-
 }

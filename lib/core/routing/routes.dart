@@ -37,6 +37,7 @@ Page buildPageWithDefaultTransition<T>({
 }
 
 GoRouter configureRouter(List<RouteGuardBase> guards) => GoRouter(
+    initialLocation: coursesPath,
     refreshListenable: Listenable.merge(guards.map((guard) => guard.listenable).toList()),
     redirect: (_, state) async {
       for(final guard in guards) {
