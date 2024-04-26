@@ -51,6 +51,10 @@ extension GetItInjectableX on _i1.GetIt {
       registerFor: {_prod},
       signalsReady: true,
     );
+    gh.factory<_i8.LessonMapper>(
+        () => _i8.LessonMapper(chapterMapper: gh<_i3.ChapterMapper>()));
+    gh.factory<_i4.CourseProgressMapper>(
+        () => _i4.CourseProgressMapper(mapper: gh<_i4.LessonProgressMapper>()));
     gh.factory<_i9.CourseRepository>(
       () => _i9.DefaultCourseRepository(
         dataSource: gh<_i6.CourseDataSource>(),
@@ -60,10 +64,6 @@ extension GetItInjectableX on _i1.GetIt {
       ),
       registerFor: {_dev},
     );
-    gh.factory<_i8.LessonMapper>(
-        () => _i8.LessonMapper(chapterMapper: gh<_i3.ChapterMapper>()));
-    gh.factory<_i4.CourseProgressMapper>(
-        () => _i4.CourseProgressMapper(mapper: gh<_i4.LessonProgressMapper>()));
     return this;
   }
 }

@@ -9,7 +9,8 @@ abstract class CourseProgressDataSource {
   Future<void> insertOrUpdate(int courseId, CourseProgressDTO progress);
 }
 
-@Singleton(as: CourseProgressDataSource, env: [Environment.dev], signalsReady: true)
+@Singleton(
+    as: CourseProgressDataSource, env: [Environment.dev], signalsReady: true)
 class HiveLessonProgressDataSource implements CourseProgressDataSource {
   static const _boxName = 'progress';
   late Box<HiveCourseProgressDTO> _box;

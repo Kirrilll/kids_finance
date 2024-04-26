@@ -17,12 +17,11 @@ abstract class CourseRepository {
 
 @Injectable(as: CourseRepository, env: [Environment.dev])
 class DefaultCourseRepository implements CourseRepository {
-  DefaultCourseRepository({
-    required this.dataSource,
-    required this.courseMapper,
-    required this.progressDataSource,
-    required this.progressMapper
-  });
+  DefaultCourseRepository(
+      {required this.dataSource,
+      required this.courseMapper,
+      required this.progressDataSource,
+      required this.progressMapper});
 
   final CourseProgressMapper progressMapper;
   final CourseMapper courseMapper;
@@ -36,7 +35,8 @@ class DefaultCourseRepository implements CourseRepository {
 
     progressDto ??= CourseProgressDTO(
         courseId: courseDto.id,
-        lastLesson: const LessonProgressDTO(lessonIndex: 0, lastChapterIndex: 0));
+        lastLesson:
+            const LessonProgressDTO(lessonIndex: 0, lastChapterIndex: 0));
 
     var course = courseMapper!.convertDTO(courseDto, progressDto!);
 
@@ -59,11 +59,11 @@ class DefaultCourseRepository implements CourseRepository {
         }
       }
       prog ??= CourseProgressDTO(
-            courseId: courses[i].id,
-            lastLesson: const LessonProgressDTO(
-              lessonIndex: 0,
-              lastChapterIndex: 0,
-            ));
+          courseId: courses[i].id,
+          lastLesson: const LessonProgressDTO(
+            lessonIndex: 0,
+            lastChapterIndex: 0,
+          ));
       result.add(courseMapper.convertDTO(courses[i], prog));
     }
     return Future(() => result);
@@ -81,6 +81,7 @@ class DefaultCourseRepository implements CourseRepository {
 
   @override
   Future<void> save(CourseProgress progress) async {
-    return progressDataSource.insertOrUpdate(progress.courseId, progressMapper.convert(progress));
+    return progressDataSource.insertOrUpdate(
+        progress.courseId, progressMapper.convert(progress));
   }
 }

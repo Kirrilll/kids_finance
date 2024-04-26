@@ -3,7 +3,12 @@ import '../../domain/entity/e_course_passing_type.dart';
 import '../utils/extensions/course_passing_type_icon_extension.dart';
 
 class CourseInfo extends StatelessWidget {
-  const CourseInfo({super.key, required this.title, required this.subTitle, required this.passingTypes, this.center = false});
+  const CourseInfo(
+      {super.key,
+      required this.title,
+      required this.subTitle,
+      required this.passingTypes,
+      this.center = false});
 
   final String title;
   final String subTitle;
@@ -15,9 +20,8 @@ class CourseInfo extends StatelessWidget {
     final TextStyle? headStyle = Theme.of(context).textTheme.headlineSmall;
     final TextStyle? subStyle = Theme.of(context).textTheme.displayMedium;
     return Column(
-      crossAxisAlignment: center
-          ? CrossAxisAlignment.center
-          : CrossAxisAlignment.start,
+      crossAxisAlignment:
+          center ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 11),
         Row(

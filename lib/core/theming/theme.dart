@@ -5,44 +5,43 @@ part 'elevated_button_theme_data.dart';
 part 'color_scheme.dart';
 
 final lightTheme = ThemeData(
-      brightness: Brightness.light,
-      // backgroundColor: kSecondaryColor,
-      primaryColor: kPrimaryColor,
-      textTheme: const TextTheme(
-        headlineLarge: TextStyle(
-          fontFamily: fontNameDefault,
-          fontSize: h1TextSize,
-          fontWeight: FontWeight.w800,
-          color: dark,
-        ),
-        headlineMedium: TextStyle(
-          fontFamily: fontNameDefault,
-          fontSize: h2TextSize,
-          fontWeight: FontWeight.w800,
-          color: dark,
-        ),
-        headlineSmall: TextStyle(
-          fontFamily: fontNameDefault,
-          fontSize: semiBoldTextSize,
-          fontWeight: FontWeight.w600,
-          color: dark,
-        ),
-        displayMedium: TextStyle(
-          fontFamily: fontNameDefault,
-          fontSize: mediumTextSize,
-          fontWeight: FontWeight.w500,
-          color: dark,
-        ),
+    brightness: Brightness.light,
+    // backgroundColor: kSecondaryColor,
+    primaryColor: kPrimaryColor,
+    textTheme: const TextTheme(
+      headlineLarge: TextStyle(
+        fontFamily: fontNameDefault,
+        fontSize: h1TextSize,
+        fontWeight: FontWeight.w800,
+        color: dark,
       ),
-      iconTheme: const IconThemeData(
-        size: 26.0,
+      headlineMedium: TextStyle(
+        fontFamily: fontNameDefault,
+        fontSize: h2TextSize,
+        fontWeight: FontWeight.w800,
+        color: dark,
       ),
-      buttonTheme: const ButtonThemeData(
-        height: 70.0,
-        buttonColor: blue,
+      headlineSmall: TextStyle(
+        fontFamily: fontNameDefault,
+        fontSize: semiBoldTextSize,
+        fontWeight: FontWeight.w600,
+        color: dark,
       ),
-      cardColor: kPrimaryColor,
-      scaffoldBackgroundColor: kSecondaryColor,
-      elevatedButtonTheme: _lightElevatedButtonTheme,
-      colorScheme: _lightScheme
-    );
+      displayMedium: TextStyle(
+        fontFamily: fontNameDefault,
+        fontSize: mediumTextSize,
+        fontWeight: FontWeight.w500,
+        color: dark,
+      ),
+    ),
+    iconTheme: const IconThemeData(
+      size: 26.0,
+    ),
+    buttonTheme: const ButtonThemeData(
+      height: 70.0,
+      buttonColor: blue,
+    ),
+    cardColor: kPrimaryColor,
+    scaffoldBackgroundColor: kSecondaryColor,
+    elevatedButtonTheme: _lightElevatedButtonTheme,
+    colorScheme: _lightScheme);

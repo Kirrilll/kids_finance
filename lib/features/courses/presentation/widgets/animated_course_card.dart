@@ -11,20 +11,19 @@ class AnimatedCourseCard extends StatelessWidget {
   final List<ECoursePassingType> passingTypes;
   final bool isFocused;
 
-  const AnimatedCourseCard({super.key,
-    required this.logo,
-    required this.title,
-    required this.subTitle,
-    required this.passingTypes,
-    this.isFocused = false
-  });
+  const AnimatedCourseCard(
+      {super.key,
+      required this.logo,
+      required this.title,
+      required this.subTitle,
+      required this.passingTypes,
+      this.isFocused = false});
 
   factory AnimatedCourseCard.fromCourse(Course course) => AnimatedCourseCard(
       logo: course.logo,
       title: course.header,
       subTitle: course.description,
-      passingTypes: const [ECoursePassingType.read]
-  );
+      passingTypes: const [ECoursePassingType.read]);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +42,13 @@ class AnimatedCourseCard extends StatelessWidget {
             ),
           ),
           SizedBox(height: 12.h),
-          if(isFocused) CourseInfo(title: title, subTitle: subTitle, passingTypes: passingTypes, center: true,)
+          if (isFocused)
+            CourseInfo(
+              title: title,
+              subTitle: subTitle,
+              passingTypes: passingTypes,
+              center: true,
+            )
         ],
       ),
     );

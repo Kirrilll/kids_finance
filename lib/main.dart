@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kids_finance/core/app/app.dart';
+import 'package:kids_finance/core/utils/svg_image_caching.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -10,13 +11,14 @@ void main() async {
   await Hive.initFlutter((await getApplicationCacheDirectory()).path);
   // await configureDependencies(Environment.dev);
   // await getIt.allReady();
+  await SvgImageCaching().precacheAppSvgPictures();
   runApp(
     ScreenUtilInit(
       designSize: const Size(360, 690),
       fontSizeResolver: FontSizeResolvers.height,
       minTextAdapt: true,
       builder: (BuildContext context, Widget? child) =>
-      const ProviderScope(child: App()),
+          const ProviderScope(child: App()),
     ),
   );
 }
