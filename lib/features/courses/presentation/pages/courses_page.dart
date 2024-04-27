@@ -98,7 +98,7 @@ class CoursesPage extends ConsumerWidget {
                         lessons: []),
                   ]),
               const SizedBox(height: 12),
-              const CoursesCardHorizontal(courses: [
+              const CoursesBlockHorizontal(courses: [
                 Course(
                     id: 1,
                     header: 'Контроль раскходов',
