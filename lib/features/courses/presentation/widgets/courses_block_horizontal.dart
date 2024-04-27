@@ -7,7 +7,7 @@ import 'package:kids_finance/features/courses/presentation/widgets/animated_cour
 
 import '../../domain/entity/course.dart';
 
-class CoursesBlockHorizontal extends StatelessWidget {
+class CoursesBlockHorizontal extends StatefulWidget {
 
   final List<Course> courses;
   final String blockTitle;
@@ -23,6 +23,29 @@ class CoursesBlockHorizontal extends StatelessWidget {
   factory CoursesBlockHorizontal.loading() => const CoursesBlockHorizontal(courses: [], blockTitle: '', isLoading: true);
 
   @override
+  State<CoursesBlockHorizontal> createState() => _CoursesBlockHorizontalState();
+}
+
+class _CoursesBlockHorizontalState extends State<CoursesBlockHorizontal> {
+
+  late final  _lessonsController = PageController(viewportFraction: 0.4);
+  double currProgress = 0;
+
+  @override
+  void initState() {
+    _lessonsController.addListener(() {
+      setState(() => currProgress = _lessonsController.page ?? 0);
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _lessonsController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       decoration:  BoxDecoration(
@@ -34,15 +57,16 @@ class CoursesBlockHorizontal extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          FittedBox(child: Text(blockTitle, style: Theme.of(context).textTheme.headlineLarge, textAlign: TextAlign.center)),
+          FittedBox(child: Text(widget.blockTitle, style: Theme.of(context).textTheme.headlineLarge, textAlign: TextAlign.center)),
           const SizedBox(height: 12),
           Expanded(
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (_, int index) => AnimatedCourseCard.fromCourse(courses[index]),
-              separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 10),
-              itemCount: courses.length,
-              // : courseCards,
+            child: PageView.builder(
+                itemCount: widget.courses.length,
+                controller: _lessonsController,
+                itemBuilder: (_, index) => AnimatedCourseCard.fromCourse(
+                  widget.courses[index],
+                  progress: 1 - (index - currProgress).abs().clamp(0, 1),
+                )
             ),
           ),
         ],
