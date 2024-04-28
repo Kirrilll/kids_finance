@@ -1,87 +1,71 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kids_finance/core/presentation/panel.dart';
 import 'package:kids_finance/core/routing/constants/name_constants.dart';
-import 'package:kids_finance/core/routing/constants/path_params_constants.dart';
-import 'package:kids_finance/core/routing/providers/router_providers.dart';
 import 'package:kids_finance/features/courses/domain/entity/course.dart';
-import '../../domain/entity/e_course_passing_type.dart';
-import 'package:kids_finance/features/courses/presentation/widgets/course_info.dart';
+import 'package:kids_finance/features/courses/domain/entity/lesson.dart';
+import 'lesson_card.dart';
 
-class CourseCard extends ConsumerWidget {
-  final int id;
-  final int progress;
+class CoursesCard extends StatelessWidget {
+  final List<Lesson> lessons; //lesspns
   final String title;
-  final String subTitle;
-  final String logo;
-  final List<ECoursePassingType> passingTypes;
-  final bool isLoading;
+  final String description;
 
-  const CourseCard(
+  const CoursesCard(
       {super.key,
-      required this.id,
-      required this.progress,
+      required this.lessons,
       required this.title,
-      required this.subTitle,
-      required this.logo,
-      required this.passingTypes,
-      this.isLoading = false});
+      required this.description});
 
-  factory CourseCard.fromCourse(Course course) => CourseCard(
-      id: course.id,
-      progress: course.progress?.lastLesson.lastChapterIndex ?? 0,
-      title: course.header,
-      subTitle: course.lessons.isEmpty
-          ? '0 минут'
-          : '${course.lessons.length} по ${course.duration.inMinutes ~/ course.lessons.length} минут',
-      logo: course.logo,
-      passingTypes: const [ECoursePassingType.read]);
 
-  factory CourseCard.loading() => const CourseCard(
-      progress: 0,
-      title: '',
-      subTitle: '',
-      logo: '',
-      passingTypes: [],
-      isLoading: true,
-      id: -1);
+  factory CoursesCard.fromCourse(Course course) =>  CoursesCard(lessons: course.lessons, title: course.title, description: course.description);
+//factory from course
 
-  void Function()? buildOnTapCard(WidgetRef ref) => isLoading
-      ? null
-      : () {
-          ref
-              .read(locationServiceProvider)
-              .goNamed(name: course, params: {courseParam: id.toString()});
-        };
+// add loading
+  factory CoursesCard.loading() => const CoursesCard(
+        lessons: [],
+        title: '',
+        description: '',
+      );
 
   @override
-  Widget build(BuildContext context, ref) {
-    return InkResponse(
-      onTap: buildOnTapCard(ref),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+  Widget build(BuildContext context) {
+    final titleStyle = Theme.of(context).textTheme.headlineMedium;
+    final descriptionStyle = Theme.of(context).textTheme.displayMedium;
+
+    return Panel(
+      child: SizedBox(
+        height: 400.h,
+        child: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox.square(
-              dimension: 100.h,
-              child: Image.asset(
-                logo,
-                fit: BoxFit.fill,
+            InkResponse(
+              onTap: () {},
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(title, textAlign: TextAlign.start, style: titleStyle),
+                  SvgPicture.asset(
+                    'assets/images/Chevron-Left.svg',
+                    height: 24.h,
+                  ),
+                ],
               ),
             ),
+            SizedBox(height: 12.w),
+            Text(description, style: descriptionStyle),
+            SizedBox(height: 12.h),
             Expanded(
-              child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: CourseInfo(
-                      title: title,
-                      subTitle: subTitle,
-                      passingTypes: passingTypes)),
+              child: ListView.separated(
+                scrollDirection: Axis.vertical,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: lessons.length,
+                itemBuilder: (BuildContext context, int index) =>  LessonCard.fromLesson(lessons[index]),
+                separatorBuilder: (_, __) => const SizedBox(height: 12),
+              ),
             ),
           ],
         ),

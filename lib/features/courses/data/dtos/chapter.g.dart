@@ -19,17 +19,20 @@ class ChapterAdapter extends TypeAdapter<HiveChapterDTO> {
     return HiveChapterDTO(
       fields[0] as String,
       fields[1] as Duration,
+      fields[2] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, HiveChapterDTO obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.content)
       ..writeByte(1)
-      ..write(obj.duration);
+      ..write(obj.duration)
+      ..writeByte(2)
+      ..write(obj.id);
   }
 
   @override

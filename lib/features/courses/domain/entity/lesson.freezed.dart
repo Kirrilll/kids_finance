@@ -16,10 +16,13 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Lesson {
-  String get header => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
   String get logo => throw _privateConstructorUsedError;
   List<Chapter> get chapters => throw _privateConstructorUsedError;
-  int get currentChapter => throw _privateConstructorUsedError;
+  List<EPassingType> get passingType => throw _privateConstructorUsedError;
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
+  int? get lastPassedChapterId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LessonCopyWith<Lesson> get copyWith => throw _privateConstructorUsedError;
@@ -31,7 +34,13 @@ abstract class $LessonCopyWith<$Res> {
       _$LessonCopyWithImpl<$Res, Lesson>;
   @useResult
   $Res call(
-      {String header, String logo, List<Chapter> chapters, int currentChapter});
+      {int id,
+      String title,
+      String logo,
+      List<Chapter> chapters,
+      List<EPassingType> passingType,
+      DateTime? updatedAt,
+      int? lastPassedChapterId});
 }
 
 /// @nodoc
@@ -47,15 +56,22 @@ class _$LessonCopyWithImpl<$Res, $Val extends Lesson>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? header = null,
+    Object? id = null,
+    Object? title = null,
     Object? logo = null,
     Object? chapters = null,
-    Object? currentChapter = null,
+    Object? passingType = null,
+    Object? updatedAt = freezed,
+    Object? lastPassedChapterId = freezed,
   }) {
     return _then(_value.copyWith(
-      header: null == header
-          ? _value.header
-          : header // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
       logo: null == logo
           ? _value.logo
@@ -65,10 +81,18 @@ class _$LessonCopyWithImpl<$Res, $Val extends Lesson>
           ? _value.chapters
           : chapters // ignore: cast_nullable_to_non_nullable
               as List<Chapter>,
-      currentChapter: null == currentChapter
-          ? _value.currentChapter
-          : currentChapter // ignore: cast_nullable_to_non_nullable
-              as int,
+      passingType: null == passingType
+          ? _value.passingType
+          : passingType // ignore: cast_nullable_to_non_nullable
+              as List<EPassingType>,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastPassedChapterId: freezed == lastPassedChapterId
+          ? _value.lastPassedChapterId
+          : lastPassedChapterId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -81,7 +105,13 @@ abstract class _$$LessonImplCopyWith<$Res> implements $LessonCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String header, String logo, List<Chapter> chapters, int currentChapter});
+      {int id,
+      String title,
+      String logo,
+      List<Chapter> chapters,
+      List<EPassingType> passingType,
+      DateTime? updatedAt,
+      int? lastPassedChapterId});
 }
 
 /// @nodoc
@@ -95,15 +125,22 @@ class __$$LessonImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? header = null,
+    Object? id = null,
+    Object? title = null,
     Object? logo = null,
     Object? chapters = null,
-    Object? currentChapter = null,
+    Object? passingType = null,
+    Object? updatedAt = freezed,
+    Object? lastPassedChapterId = freezed,
   }) {
     return _then(_$LessonImpl(
-      header: null == header
-          ? _value.header
-          : header // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
       logo: null == logo
           ? _value.logo
@@ -113,10 +150,18 @@ class __$$LessonImplCopyWithImpl<$Res>
           ? _value._chapters
           : chapters // ignore: cast_nullable_to_non_nullable
               as List<Chapter>,
-      currentChapter: null == currentChapter
-          ? _value.currentChapter
-          : currentChapter // ignore: cast_nullable_to_non_nullable
-              as int,
+      passingType: null == passingType
+          ? _value._passingType
+          : passingType // ignore: cast_nullable_to_non_nullable
+              as List<EPassingType>,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastPassedChapterId: freezed == lastPassedChapterId
+          ? _value.lastPassedChapterId
+          : lastPassedChapterId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -125,15 +170,21 @@ class __$$LessonImplCopyWithImpl<$Res>
 
 class _$LessonImpl extends _Lesson with DiagnosticableTreeMixin {
   const _$LessonImpl(
-      {required this.header,
+      {required this.id,
+      required this.title,
       required this.logo,
       required final List<Chapter> chapters,
-      this.currentChapter = 0})
+      required final List<EPassingType> passingType,
+      this.updatedAt = null,
+      this.lastPassedChapterId = null})
       : _chapters = chapters,
+        _passingType = passingType,
         super._();
 
   @override
-  final String header;
+  final int id;
+  @override
+  final String title;
   @override
   final String logo;
   final List<Chapter> _chapters;
@@ -144,13 +195,24 @@ class _$LessonImpl extends _Lesson with DiagnosticableTreeMixin {
     return EqualUnmodifiableListView(_chapters);
   }
 
+  final List<EPassingType> _passingType;
+  @override
+  List<EPassingType> get passingType {
+    if (_passingType is EqualUnmodifiableListView) return _passingType;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_passingType);
+  }
+
   @override
   @JsonKey()
-  final int currentChapter;
+  final DateTime? updatedAt;
+  @override
+  @JsonKey()
+  final int? lastPassedChapterId;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Lesson(header: $header, logo: $logo, chapters: $chapters, currentChapter: $currentChapter)';
+    return 'Lesson(id: $id, title: $title, logo: $logo, chapters: $chapters, passingType: $passingType, updatedAt: $updatedAt, lastPassedChapterId: $lastPassedChapterId)';
   }
 
   @override
@@ -158,10 +220,13 @@ class _$LessonImpl extends _Lesson with DiagnosticableTreeMixin {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Lesson'))
-      ..add(DiagnosticsProperty('header', header))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('logo', logo))
       ..add(DiagnosticsProperty('chapters', chapters))
-      ..add(DiagnosticsProperty('currentChapter', currentChapter));
+      ..add(DiagnosticsProperty('passingType', passingType))
+      ..add(DiagnosticsProperty('updatedAt', updatedAt))
+      ..add(DiagnosticsProperty('lastPassedChapterId', lastPassedChapterId));
   }
 
   @override
@@ -169,16 +234,28 @@ class _$LessonImpl extends _Lesson with DiagnosticableTreeMixin {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LessonImpl &&
-            (identical(other.header, header) || other.header == header) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.logo, logo) || other.logo == logo) &&
             const DeepCollectionEquality().equals(other._chapters, _chapters) &&
-            (identical(other.currentChapter, currentChapter) ||
-                other.currentChapter == currentChapter));
+            const DeepCollectionEquality()
+                .equals(other._passingType, _passingType) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt) &&
+            (identical(other.lastPassedChapterId, lastPassedChapterId) ||
+                other.lastPassedChapterId == lastPassedChapterId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, header, logo,
-      const DeepCollectionEquality().hash(_chapters), currentChapter);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      title,
+      logo,
+      const DeepCollectionEquality().hash(_chapters),
+      const DeepCollectionEquality().hash(_passingType),
+      updatedAt,
+      lastPassedChapterId);
 
   @JsonKey(ignore: true)
   @override
@@ -189,20 +266,29 @@ class _$LessonImpl extends _Lesson with DiagnosticableTreeMixin {
 
 abstract class _Lesson extends Lesson {
   const factory _Lesson(
-      {required final String header,
+      {required final int id,
+      required final String title,
       required final String logo,
       required final List<Chapter> chapters,
-      final int currentChapter}) = _$LessonImpl;
+      required final List<EPassingType> passingType,
+      final DateTime? updatedAt,
+      final int? lastPassedChapterId}) = _$LessonImpl;
   const _Lesson._() : super._();
 
   @override
-  String get header;
+  int get id;
+  @override
+  String get title;
   @override
   String get logo;
   @override
   List<Chapter> get chapters;
   @override
-  int get currentChapter;
+  List<EPassingType> get passingType;
+  @override
+  DateTime? get updatedAt;
+  @override
+  int? get lastPassedChapterId;
   @override
   @JsonKey(ignore: true)
   _$$LessonImplCopyWith<_$LessonImpl> get copyWith =>

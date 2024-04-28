@@ -4,10 +4,12 @@ import 'package:json_annotation/json_annotation.dart';
 part 'chapter.g.dart';
 
 class ChapterDTO{
+  final int id;
   final String content;
   final Duration duration;
   
   const ChapterDTO({
+    required this.id,
     required this.content,
     required this.duration
   });
@@ -16,7 +18,7 @@ class ChapterDTO{
 @JsonSerializable(explicitToJson: true)
 @HiveType(typeId: 5, adapterName: "ChapterAdapter")
 class HiveChapterDTO extends HiveObject implements ChapterDTO{
-  HiveChapterDTO(this.content, this.duration);
+  HiveChapterDTO(this.content, this.duration, this.id);
 
   @override
   @HiveField(0)
@@ -25,4 +27,8 @@ class HiveChapterDTO extends HiveObject implements ChapterDTO{
   @override
   @HiveField(1)
   final Duration duration;
+
+  @override
+  @HiveField(2)
+  final int id;
 }

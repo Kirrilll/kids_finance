@@ -1,8 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:kids_finance/features/courses/data/dtos/lesson_progress.dart';
-import 'package:kids_finance/features/courses/domain/entity/course_progress.dart';
-
 part 'course_progress.g.dart';
 
 class CourseProgressDTO {

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kids_finance/core/presentation/panel.dart';
 import 'package:kids_finance/features/courses/domain/entity/course.dart';
-import 'package:kids_finance/features/courses/presentation/widgets/courses_block.dart';
+import 'package:kids_finance/features/courses/presentation/widgets/course_card.dart';
 
 class LessonPage extends StatelessWidget {
   final int courseId;
@@ -83,29 +83,29 @@ class LessonPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 12.h),
-              const CoursesBlock(
+              const CoursesCard(
                 title: 'О курсе',
                 description:
                     'В рамках первого модуля вы научитесь управлять личными финансами: определять свои доходы и расходы, узнаете, как составлять бюджет и достиг',
-                courses: [
-                  Course(
-                      id: 1,
-                      header: 'История денег и их функции',
-                      logo: 'assets/images/courseCard1.png',
-                      description: '2ч 30 мин.',
-                      lessons: []),
-                  Course(
-                      id: 2,
-                      header: 'Деньги и банкноты мира',
-                      logo: 'assets/images/courseCard2.png',
-                      description: '2ч 30 мин.',
-                      lessons: []),
-                  Course(
-                      id: 3,
-                      header: 'Доходы и карманные деньги',
-                      logo: 'assets/images/courseCard3.png',
-                      description: '2ч 30 мин.',
-                      lessons: []),
+                lessons: [
+                  // Course(
+                  //     id: 1,
+                  //     header: 'История денег и их функции',
+                  //     logo: 'assets/images/courseCard1.png',
+                  //     description: '2ч 30 мин.',
+                  //     lessons: []),
+                  // Course(
+                  //     id: 2,
+                  //     header: 'Деньги и банкноты мира',
+                  //     logo: 'assets/images/courseCard2.png',
+                  //     description: '2ч 30 мин.',
+                  //     lessons: []),
+                  // Course(
+                  //     id: 3,
+                  //     header: 'Доходы и карманные деньги',
+                  //     logo: 'assets/images/courseCard3.png',
+                  //     description: '2ч 30 мин.',
+                  //     lessons: []),
                 ],
               ),
             ],

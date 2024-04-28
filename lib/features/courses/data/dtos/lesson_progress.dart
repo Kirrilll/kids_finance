@@ -3,20 +3,27 @@ part 'lesson_progress.g.dart';
 
 class LessonProgressDTO{
   const LessonProgressDTO({
-    required this.lessonIndex,
-    required this.lastChapterIndex,
+    required this.lessonId,
+    required this.lastPassedChapterId,
+    required this.updatedAt
   });
-  final int lessonIndex;
-  final int lastChapterIndex;
+  final int lessonId;
+  final DateTime updatedAt;
+  final int lastPassedChapterId;
 }
 
 @HiveType(typeId: 1, adapterName: "LessonProgressAdapter")
 class HiveLessonProgressDTO extends HiveObject implements LessonProgressDTO{
-  HiveLessonProgressDTO(this.lessonIndex, this.lastChapterIndex);
+  HiveLessonProgressDTO(this.lessonId, this.lastPassedChapterId, this.updatedAt);
   @override
   @HiveField(0)
-  final int lessonIndex;
+  final int lessonId;
+
   @override
   @HiveField(1)
-  final int lastChapterIndex;
+  final int lastPassedChapterId;
+
+  @override
+  @HiveField(2)
+  final DateTime updatedAt;
 }

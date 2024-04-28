@@ -20,13 +20,16 @@ class LessonAdapter extends TypeAdapter<HiveLessonDTO> {
       (fields[1] as List).cast<ChapterDTO>(),
       fields[0] as String,
       fields[2] as String,
+      fields[3] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, HiveLessonDTO obj) {
     writer
+      ..writeByte(4)
       ..writeByte(3)
+      ..write(obj.id)
       ..writeByte(0)
       ..write(obj.header)
       ..writeByte(1)

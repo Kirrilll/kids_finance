@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Chapter {
+  int get id => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   Duration get duration => throw _privateConstructorUsedError;
 
@@ -28,7 +29,7 @@ abstract class $ChapterCopyWith<$Res> {
   factory $ChapterCopyWith(Chapter value, $Res Function(Chapter) then) =
       _$ChapterCopyWithImpl<$Res, Chapter>;
   @useResult
-  $Res call({String content, Duration duration});
+  $Res call({int id, String content, Duration duration});
 }
 
 /// @nodoc
@@ -44,10 +45,15 @@ class _$ChapterCopyWithImpl<$Res, $Val extends Chapter>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? content = null,
     Object? duration = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -67,7 +73,7 @@ abstract class _$$ChapterImplCopyWith<$Res> implements $ChapterCopyWith<$Res> {
       __$$ChapterImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String content, Duration duration});
+  $Res call({int id, String content, Duration duration});
 }
 
 /// @nodoc
@@ -81,10 +87,15 @@ class __$$ChapterImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? content = null,
     Object? duration = null,
   }) {
     return _then(_$ChapterImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -100,8 +111,11 @@ class __$$ChapterImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ChapterImpl with DiagnosticableTreeMixin implements _Chapter {
-  const _$ChapterImpl({required this.content, required this.duration});
+  const _$ChapterImpl(
+      {required this.id, required this.content, required this.duration});
 
+  @override
+  final int id;
   @override
   final String content;
   @override
@@ -109,7 +123,7 @@ class _$ChapterImpl with DiagnosticableTreeMixin implements _Chapter {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Chapter(content: $content, duration: $duration)';
+    return 'Chapter(id: $id, content: $content, duration: $duration)';
   }
 
   @override
@@ -117,6 +131,7 @@ class _$ChapterImpl with DiagnosticableTreeMixin implements _Chapter {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Chapter'))
+      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('content', content))
       ..add(DiagnosticsProperty('duration', duration));
   }
@@ -126,13 +141,14 @@ class _$ChapterImpl with DiagnosticableTreeMixin implements _Chapter {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChapterImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.duration, duration) ||
                 other.duration == duration));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, content, duration);
+  int get hashCode => Object.hash(runtimeType, id, content, duration);
 
   @JsonKey(ignore: true)
   @override
@@ -143,9 +159,12 @@ class _$ChapterImpl with DiagnosticableTreeMixin implements _Chapter {
 
 abstract class _Chapter implements Chapter {
   const factory _Chapter(
-      {required final String content,
+      {required final int id,
+      required final String content,
       required final Duration duration}) = _$ChapterImpl;
 
+  @override
+  int get id;
   @override
   String get content;
   @override

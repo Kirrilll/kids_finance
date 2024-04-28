@@ -19,17 +19,20 @@ class LessonProgressAdapter extends TypeAdapter<HiveLessonProgressDTO> {
     return HiveLessonProgressDTO(
       fields[0] as int,
       fields[1] as int,
+      fields[2] as DateTime,
     );
   }
 
   @override
   void write(BinaryWriter writer, HiveLessonProgressDTO obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
-      ..write(obj.lessonIndex)
+      ..write(obj.lessonId)
       ..writeByte(1)
-      ..write(obj.lastChapterIndex);
+      ..write(obj.lastPassedChapterId)
+      ..writeByte(2)
+      ..write(obj.updatedAt);
   }
 
   @override

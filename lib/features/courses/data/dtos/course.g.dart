@@ -34,7 +34,7 @@ class CourseAdapter extends TypeAdapter<HiveCourseDTO> {
       ..writeByte(1)
       ..write(obj.lessons)
       ..writeByte(2)
-      ..write(obj.header)
+      ..write(obj.title)
       ..writeByte(3)
       ..write(obj.logo)
       ..writeByte(4)

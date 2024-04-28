@@ -5,11 +5,13 @@ import 'package:json_annotation/json_annotation.dart';
 part 'lesson.g.dart';
 
 class LessonDTO{
+  final int id;
   final String header;
   final List<ChapterDTO> chapters;
   final String logo;
 
   const LessonDTO({
+    required this.id,
     required this.header,
     required this.chapters,
     required this.logo,
@@ -19,7 +21,11 @@ class LessonDTO{
 @JsonSerializable(explicitToJson: true)
 @HiveType(typeId: 4, adapterName: "LessonAdapter")
 class HiveLessonDTO extends HiveObject implements LessonDTO{
-  HiveLessonDTO(this.chapters, this.header, this.logo);
+  HiveLessonDTO(this.chapters, this.header, this.logo, this.id);
+
+  @override
+  @HiveField(3)
+  final int id;
 
   @override
   @HiveField(0)

@@ -6,14 +6,14 @@ part 'course.g.dart';
 
 class CourseDTO {
   final int id;
-  final String header;
+  final String title;
   final String logo;
   final String description;
   final List<LessonDTO> lessons;
 
-  CourseDTO(
+  const CourseDTO(
       {required this.id,
-      required this.header,
+      required this.title,
       required this.logo,
       required this.description,
       required this.lessons});
@@ -23,7 +23,7 @@ class CourseDTO {
 @HiveType(typeId: 2, adapterName: "CourseAdapter")
 class HiveCourseDTO extends HiveObject implements CourseDTO {
   HiveCourseDTO(
-      this.id, this.lessons, this.header, this.logo, this.description);
+      this.id, this.lessons, this.title, this.logo, this.description);
 
   @override
   @HiveField(0)
@@ -35,7 +35,7 @@ class HiveCourseDTO extends HiveObject implements CourseDTO {
 
   @override
   @HiveField(2)
-  final String header;
+  final String title;
 
   @override
   @HiveField(3)

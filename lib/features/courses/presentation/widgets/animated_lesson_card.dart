@@ -5,22 +5,23 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kids_finance/core/routing/providers/router_providers.dart';
 import 'package:kids_finance/features/courses/domain/entity/course.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kids_finance/features/courses/domain/entity/lesson.dart';
 import '../../../../core/routing/constants/name_constants.dart';
 import '../../../../core/routing/constants/path_params_constants.dart';
-import '../../domain/entity/e_course_passing_type.dart';
-import 'package:kids_finance/features/courses/presentation/widgets/course_info.dart';
+import '../../domain/entity/e_passing_type.dart';
+import 'package:kids_finance/features/courses/presentation/widgets/lesson_info.dart';
 
 
-class AnimatedCourseCard  extends ConsumerWidget {
+class AnimatedLessonCard  extends ConsumerWidget {
   final int id;
   final String logo;
   final String title;
   final String subTitle;
-  final List<ECoursePassingType> passingTypes;
+  final List<EPassingType> passingTypes;
   final double progress;
 
 
-  const AnimatedCourseCard({super.key,
+  const AnimatedLessonCard({super.key,
     required this.id,
     required this.logo,
     required this.title,
@@ -29,12 +30,14 @@ class AnimatedCourseCard  extends ConsumerWidget {
     this.progress = 0
   }): assert(progress >= 0 && progress <= 1);
 
-  factory AnimatedCourseCard.fromCourse(Course course, {double progress = 0}) => AnimatedCourseCard(
-      id:  course.id,
-      logo: course.logo,
-      title: course.header,
-      subTitle: course.description,
-      passingTypes: const [ECoursePassingType.read],
+  factory AnimatedLessonCard.fromLesson(Lesson lesson, {double progress = 0}) => AnimatedLessonCard(
+      id:  lesson.id,
+      logo: lesson.logo,
+      title: lesson.title,
+      subTitle: lesson.chapters.isEmpty
+          ? '0 минут'
+          : '${lesson.chapters.length} по ${lesson.duration.inMinutes ~/ lesson.chapters.length} минут',
+      passingTypes: const [EPassingType.read],
       progress: progress,
   );
 
@@ -69,7 +72,7 @@ class AnimatedCourseCard  extends ConsumerWidget {
               opacity: progress,
               duration: const Duration(milliseconds: 50),
               curve: Curves.ease,
-              child: CourseInfo(title: title, subTitle: subTitle, passingTypes: passingTypes, center: true,),
+              child: LessonInfo(title: title, subTitle: subTitle, passingTypes: passingTypes, center: true,),
           ) ,
         ],
       ),

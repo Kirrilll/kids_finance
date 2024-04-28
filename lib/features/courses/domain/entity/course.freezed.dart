@@ -17,11 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Course {
   int get id => throw _privateConstructorUsedError;
-  String get header => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
   String get logo => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   List<Lesson> get lessons => throw _privateConstructorUsedError;
-  CourseProgress? get progress => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CourseCopyWith<Course> get copyWith => throw _privateConstructorUsedError;
@@ -34,11 +33,10 @@ abstract class $CourseCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      String header,
+      String title,
       String logo,
       String description,
-      List<Lesson> lessons,
-      CourseProgress? progress});
+      List<Lesson> lessons});
 }
 
 /// @nodoc
@@ -55,20 +53,19 @@ class _$CourseCopyWithImpl<$Res, $Val extends Course>
   @override
   $Res call({
     Object? id = null,
-    Object? header = null,
+    Object? title = null,
     Object? logo = null,
     Object? description = null,
     Object? lessons = null,
-    Object? progress = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      header: null == header
-          ? _value.header
-          : header // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
       logo: null == logo
           ? _value.logo
@@ -82,10 +79,6 @@ class _$CourseCopyWithImpl<$Res, $Val extends Course>
           ? _value.lessons
           : lessons // ignore: cast_nullable_to_non_nullable
               as List<Lesson>,
-      progress: freezed == progress
-          ? _value.progress
-          : progress // ignore: cast_nullable_to_non_nullable
-              as CourseProgress?,
     ) as $Val);
   }
 }
@@ -99,11 +92,10 @@ abstract class _$$CourseImplCopyWith<$Res> implements $CourseCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      String header,
+      String title,
       String logo,
       String description,
-      List<Lesson> lessons,
-      CourseProgress? progress});
+      List<Lesson> lessons});
 }
 
 /// @nodoc
@@ -118,20 +110,19 @@ class __$$CourseImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? header = null,
+    Object? title = null,
     Object? logo = null,
     Object? description = null,
     Object? lessons = null,
-    Object? progress = freezed,
   }) {
     return _then(_$CourseImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      header: null == header
-          ? _value.header
-          : header // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
       logo: null == logo
           ? _value.logo
@@ -145,10 +136,6 @@ class __$$CourseImplCopyWithImpl<$Res>
           ? _value._lessons
           : lessons // ignore: cast_nullable_to_non_nullable
               as List<Lesson>,
-      progress: freezed == progress
-          ? _value.progress
-          : progress // ignore: cast_nullable_to_non_nullable
-              as CourseProgress?,
     ));
   }
 }
@@ -158,18 +145,17 @@ class __$$CourseImplCopyWithImpl<$Res>
 class _$CourseImpl extends _Course with DiagnosticableTreeMixin {
   const _$CourseImpl(
       {required this.id,
-      required this.header,
+      required this.title,
       required this.logo,
       required this.description,
-      required final List<Lesson> lessons,
-      this.progress})
+      required final List<Lesson> lessons})
       : _lessons = lessons,
         super._();
 
   @override
   final int id;
   @override
-  final String header;
+  final String title;
   @override
   final String logo;
   @override
@@ -183,11 +169,8 @@ class _$CourseImpl extends _Course with DiagnosticableTreeMixin {
   }
 
   @override
-  final CourseProgress? progress;
-
-  @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Course(id: $id, header: $header, logo: $logo, description: $description, lessons: $lessons, progress: $progress)';
+    return 'Course(id: $id, title: $title, logo: $logo, description: $description, lessons: $lessons)';
   }
 
   @override
@@ -196,11 +179,10 @@ class _$CourseImpl extends _Course with DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'Course'))
       ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('header', header))
+      ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('logo', logo))
       ..add(DiagnosticsProperty('description', description))
-      ..add(DiagnosticsProperty('lessons', lessons))
-      ..add(DiagnosticsProperty('progress', progress));
+      ..add(DiagnosticsProperty('lessons', lessons));
   }
 
   @override
@@ -209,18 +191,16 @@ class _$CourseImpl extends _Course with DiagnosticableTreeMixin {
         (other.runtimeType == runtimeType &&
             other is _$CourseImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.header, header) || other.header == header) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.logo, logo) || other.logo == logo) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            const DeepCollectionEquality().equals(other._lessons, _lessons) &&
-            (identical(other.progress, progress) ||
-                other.progress == progress));
+            const DeepCollectionEquality().equals(other._lessons, _lessons));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, header, logo, description,
-      const DeepCollectionEquality().hash(_lessons), progress);
+  int get hashCode => Object.hash(runtimeType, id, title, logo, description,
+      const DeepCollectionEquality().hash(_lessons));
 
   @JsonKey(ignore: true)
   @override
@@ -232,25 +212,22 @@ class _$CourseImpl extends _Course with DiagnosticableTreeMixin {
 abstract class _Course extends Course {
   const factory _Course(
       {required final int id,
-      required final String header,
+      required final String title,
       required final String logo,
       required final String description,
-      required final List<Lesson> lessons,
-      final CourseProgress? progress}) = _$CourseImpl;
+      required final List<Lesson> lessons}) = _$CourseImpl;
   const _Course._() : super._();
 
   @override
   int get id;
   @override
-  String get header;
+  String get title;
   @override
   String get logo;
   @override
   String get description;
   @override
   List<Lesson> get lessons;
-  @override
-  CourseProgress? get progress;
   @override
   @JsonKey(ignore: true)
   _$$CourseImplCopyWith<_$CourseImpl> get copyWith =>

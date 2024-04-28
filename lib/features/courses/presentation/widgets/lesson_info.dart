@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../domain/entity/e_course_passing_type.dart';
+import '../../domain/entity/e_passing_type.dart';
 import '../utils/extensions/course_passing_type_icon_extension.dart';
 
-class CourseInfo extends StatelessWidget {
-  const CourseInfo(
+class LessonInfo extends StatelessWidget {
+  const LessonInfo(
       {super.key,
       required this.title,
       required this.subTitle,
@@ -12,7 +12,7 @@ class CourseInfo extends StatelessWidget {
 
   final String title;
   final String subTitle;
-  final List<ECoursePassingType> passingTypes;
+  final List<EPassingType> passingTypes;
   final bool center;
 
   @override

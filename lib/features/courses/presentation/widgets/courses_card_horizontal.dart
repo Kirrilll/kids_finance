@@ -3,30 +3,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kids_finance/core/presentation/panel.dart';
-import 'package:kids_finance/features/courses/presentation/widgets/animated_course_card.dart';
+import 'package:kids_finance/features/courses/domain/entity/lesson.dart';
+import 'package:kids_finance/features/courses/presentation/widgets/animated_lesson_card.dart';
 
 import '../../domain/entity/course.dart';
 
-class CoursesBlockHorizontal extends StatefulWidget {
+class CourseCardHorizontal extends StatefulWidget {
 
-  final List<Course> courses;
-  final String blockTitle;
+  final List<Lesson> lessons;
+  final String title;
   final bool isLoading;
 
-  const CoursesBlockHorizontal({
+  const CourseCardHorizontal({
     super.key,
-    required this.courses,
-    required this.blockTitle,
+    required this.lessons,
+    required this.title,
     this.isLoading = false
   });
 
-  factory CoursesBlockHorizontal.loading() => const CoursesBlockHorizontal(courses: [], blockTitle: '', isLoading: true);
+  factory CourseCardHorizontal.loading() => const CourseCardHorizontal(lessons: [], title: '', isLoading: true);
+
+  factory CourseCardHorizontal.fromCourse(Course course) => CourseCardHorizontal(lessons: course.lessons, title: course.title);
 
   @override
-  State<CoursesBlockHorizontal> createState() => _CoursesBlockHorizontalState();
+  State<CourseCardHorizontal> createState() => _CourseCardHorizontalState();
 }
 
-class _CoursesBlockHorizontalState extends State<CoursesBlockHorizontal> {
+class _CourseCardHorizontalState extends State<CourseCardHorizontal> {
 
   late final  _lessonsController = PageController(viewportFraction: 0.4);
   double currProgress = 0;
@@ -57,14 +60,14 @@ class _CoursesBlockHorizontalState extends State<CoursesBlockHorizontal> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          FittedBox(child: Text(widget.blockTitle, style: Theme.of(context).textTheme.headlineLarge, textAlign: TextAlign.center)),
+          FittedBox(child: Text(widget.title, style: Theme.of(context).textTheme.headlineLarge, textAlign: TextAlign.center)),
           const SizedBox(height: 12),
           Expanded(
             child: PageView.builder(
-                itemCount: widget.courses.length,
+                itemCount: widget.lessons.length,
                 controller: _lessonsController,
-                itemBuilder: (_, index) => AnimatedCourseCard.fromCourse(
-                  widget.courses[index],
+                itemBuilder: (_, index) => AnimatedLessonCard.fromLesson(
+                  widget.lessons[index],
                   progress: 1 - (index - currProgress).abs().clamp(0, 1),
                 )
             ),
