@@ -9,7 +9,7 @@ import 'package:kids_finance/features/courses/domain/entity/lesson.dart';
 import 'lesson_card.dart';
 
 class CoursesCard extends StatelessWidget {
-  final List<Lesson> lessons; //lesspns
+  final List<Lesson> lessons;
   final String title;
   final String description;
   final void Function()? onCardTap;
@@ -56,10 +56,12 @@ class CoursesCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(title, textAlign: TextAlign.start, style: titleStyle),
-                  SvgPicture.asset(
+                  onCardTap != null
+                      ? SvgPicture.asset(
                     'assets/images/Chevron-Left.svg',
                     height: 24.h,
-                  ),
+                  )
+                      : const SizedBox(),
                 ],
               ),
             ),
@@ -70,7 +72,7 @@ class CoursesCard extends StatelessWidget {
               child: ListView.separated(
                 scrollDirection: Axis.vertical,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: lessons.length,
+                itemCount: lessons.length.clamp(0, 3),
                 itemBuilder: (BuildContext context, int index) =>  LessonCard.fromLesson(lessons[index]),
                 separatorBuilder: (_, __) => const SizedBox(height: 12),
               ),

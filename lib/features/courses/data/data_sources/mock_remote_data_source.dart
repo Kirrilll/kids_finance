@@ -40,6 +40,26 @@ class MockRemoteDataSource implements CourseRemoteDataSource {
           ],
           logo: 'assets/images/courseCard4.png'
       ),
+      LessonDTO(
+          id: 7,
+          header: 'HDhshsf',
+          chapters: [
+            ChapterDTO(id: 1, content: 'sbfbhfsbhfshbf', duration: Duration(minutes: 2)),
+            ChapterDTO(id: 2, content: 'sbfbhfsbhfshbf', duration: Duration(minutes: 2)),
+            ChapterDTO(id: 3, content: 'sbfbhfsbhfshbf', duration: Duration(minutes: 2))
+          ],
+          logo: 'assets/images/courseCard4.png'
+      ),
+      LessonDTO(
+          id: 8,
+          header: 'HDhshsf',
+          chapters: [
+            ChapterDTO(id: 1, content: 'sbfbhfsbhfshbf', duration: Duration(minutes: 2)),
+            ChapterDTO(id: 2, content: 'sbfbhfsbhfshbf', duration: Duration(minutes: 2)),
+            ChapterDTO(id: 3, content: 'sbfbhfsbhfshbf', duration: Duration(minutes: 2))
+          ],
+          logo: 'assets/images/courseCard4.png'
+      ),
     ]),
     CourseDTO(id: 2, title: 'sfsfsfsfsfsf', logo: 'assets/images/courseCard4.png', description: 'Курс для быстрого старта в финансовой грамотности', lessons: [
       LessonDTO(
