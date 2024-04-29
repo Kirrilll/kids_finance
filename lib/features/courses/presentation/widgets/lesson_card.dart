@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:kids_finance/core/routing/constants/name_constants.dart';
 import 'package:kids_finance/core/routing/constants/path_params_constants.dart';
 import 'package:kids_finance/core/routing/providers/router_providers.dart';
-import 'package:kids_finance/features/courses/domain/entity/course.dart';
 import 'package:kids_finance/features/courses/domain/entity/lesson.dart';
 import '../../domain/entity/e_passing_type.dart';
 import 'package:kids_finance/features/courses/presentation/widgets/lesson_info.dart';
@@ -54,7 +52,7 @@ class LessonCard extends ConsumerWidget {
       : () {
           ref
               .read(locationServiceProvider)
-              .goNamed(name: course, params: {courseParam: id.toString()});
+              .goNamed(name: lesson, params: {lessonParam: id.toString()});
         };
 
   @override

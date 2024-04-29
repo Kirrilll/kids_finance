@@ -42,8 +42,8 @@ class AnimatedLessonCard  extends ConsumerWidget {
   );
 
   void Function() buildOnCardTap(WidgetRef ref) => () {
-    ref.read(locationServiceProvider).goNamed(name: course, params: {
-      courseParam: id.toString()
+    ref.read(locationServiceProvider).goNamed(name: lesson, params: {
+      lessonParam: id.toString()
     });
   };
 

@@ -2,5 +2,5 @@ part of '../routes.dart';
 
 const onBoardingPath = '/';
 const coursesPath = '/courses';
-const coursePath = ':$courseParam';
-const lessonPath = ':$courseParam/:$lessonParam';
+const coursePath = ':courseId=$courseParam';
+const lessonPath = ':lessonId=$lessonParam';

@@ -6,6 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kids_finance/core/presentation/panel.dart';
 import 'package:kids_finance/core/routing/constants/name_constants.dart';
+import 'package:kids_finance/core/routing/constants/path_params_constants.dart';
+import 'package:kids_finance/core/routing/providers/router_providers.dart';
 import 'package:kids_finance/features/courses/domain/entity/course.dart';
 import 'package:kids_finance/features/courses/domain/entity/e_passing_type.dart';
 import 'package:kids_finance/features/courses/domain/repositories/course_repository.dart';
@@ -83,13 +85,12 @@ class CoursesPage extends ConsumerWidget {
                   ...[for(int i = 0; i < courses.length; i++) Padding(
                       padding: const EdgeInsets.only(bottom: 12),
                       child: i.isEven
-                          ? CoursesCard.fromCourse(courses[i])
+                          ? CoursesCard.fromCourse(
+                              courses[i],
+                              onCardTap: () => ref.read(locationServiceProvider).goNamed(name: course, params: {courseParam: courses[i].id.toString()}),
+                          )
                           : CourseCardHorizontal.fromCourse(courses[i]),
                   )]
-                  //
-                  // const SizedBox(height: 12),
-                  // const CourseCardHorizontal(lessons: [], title: 'Основы финансовой грамматности'),
-                  // const SizedBox(height: 16),
                 ],
               ),
             ),

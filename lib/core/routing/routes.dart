@@ -7,6 +7,7 @@ import 'package:kids_finance/core/routing/constants/path_params_constants.dart';
 import 'package:kids_finance/core/routing/utils/route_guard_base.dart';
 import 'package:kids_finance/features/courses/presentation/pages/course_page.dart';
 import 'package:kids_finance/features/courses/presentation/pages/courses_page.dart';
+import 'package:kids_finance/features/courses/presentation/pages/course_page.dart';
 import 'package:kids_finance/features/courses/presentation/pages/lesson_page.dart';
 import 'package:kids_finance/features/unboarding/presentation/pages/unboarding_page.dart';
 import 'constants/name_constants.dart';
@@ -80,10 +81,7 @@ GoRouter configureRouter(List<RouteGuardBase> guards) => GoRouter(
               pageBuilder: (context, state) => buildPageWithDefaultTransition(
                   context: context,
                   state: state,
-                  child: LessonPage(
-                      courseId: int.tryParse(state.pathParameters[courseParam] ?? '') ?? -1,
-                      lessonId: int.tryParse(state.pathParameters[lessonParam] ?? '') ?? -1,
-                  )
+                  child: LessonPage(lessonId: int.tryParse(state.pathParameters[lessonParam] ?? '') ?? -1)
               )
           ),
         ]

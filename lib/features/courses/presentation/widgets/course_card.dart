@@ -12,15 +12,22 @@ class CoursesCard extends StatelessWidget {
   final List<Lesson> lessons; //lesspns
   final String title;
   final String description;
+  final void Function()? onCardTap;
 
   const CoursesCard(
       {super.key,
       required this.lessons,
       required this.title,
-      required this.description});
+      required this.description,
+      this.onCardTap});
 
 
-  factory CoursesCard.fromCourse(Course course) =>  CoursesCard(lessons: course.lessons, title: course.title, description: course.description);
+  factory CoursesCard.fromCourse(Course course, {required void Function() onCardTap}) =>  CoursesCard(
+      lessons: course.lessons,
+      title: course.title,
+      description: course.description,
+      onCardTap: onCardTap,
+  );
 //factory from course
 
 // add loading
@@ -28,6 +35,7 @@ class CoursesCard extends StatelessWidget {
         lessons: [],
         title: '',
         description: '',
+        onCardTap: null,
       );
 
   @override
@@ -43,7 +51,7 @@ class CoursesCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             InkResponse(
-              onTap: () {},
+              onTap: onCardTap,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
