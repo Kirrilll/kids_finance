@@ -7,7 +7,7 @@ part of 'course_repository.dart';
 // **************************************************************************
 
 String _$courseStateRepositoryHash() =>
-    r'9ea5b30c85d38744a2c83bd7211a10ca179cf637';
+    r'aca15021c5f79bed2c578e0c5368cc0838a809d2';
 
 /// Copied from Dart SDK
 class _SystemHash {

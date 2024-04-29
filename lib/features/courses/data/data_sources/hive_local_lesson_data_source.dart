@@ -12,6 +12,7 @@ class HiveLocalLessonDataSource implements LessonLocalDataSource {
   static const _lessonProgressName = 'lessons-progress';
 
   init() async {
+    Hive.registerAdapter(LessonProgressAdapter());
     if(!_boxCompleter.isCompleted) {
       _boxCompleter.complete((await Hive.openBox(_lessonProgressName)));
     }
@@ -28,7 +29,7 @@ class HiveLocalLessonDataSource implements LessonLocalDataSource {
   }
 
   @override
-  Future<void> updateLessonProgress({required int courseId, required int lessonId, required int passedChapterId}) async {
+  Future<void> updateLessonProgress({ required int lessonId, required int passedChapterId}) async {
     return (await _boxCompleter.future).put(lessonId, HiveLessonProgressDTO(lessonId, passedChapterId, DateTime.now()));
   }
 

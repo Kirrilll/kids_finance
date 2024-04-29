@@ -57,9 +57,10 @@ class CourseStateRepository extends _$CourseStateRepository implements CourseRep
 
   @override
   Future<void> updateLessonProgress(
-      {required int courseId,
+      {
       required int lessonId,
       required int passedChapterId}) async {
+    debugPrint('UPDATE IN REPO');
     state = state.whenData((courses) => courses
         .map((course) => course.copyWith.call(
             lessons: course.lessons
@@ -69,7 +70,6 @@ class CourseStateRepository extends _$CourseStateRepository implements CourseRep
                 .toList()))
         .toList());
     await lessonLocalDataSource.updateLessonProgress(
-        courseId: courseId,
         lessonId: lessonId,
         passedChapterId: passedChapterId);
   }

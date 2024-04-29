@@ -187,5 +187,148 @@ class _CourseSelectProviderElement
   @override
   int get courseId => (origin as CourseSelectProvider).courseId;
 }
+
+String _$lastUpdatedLessonHash() => r'ec3c5d721611c11b6516c79cb38c34f7de4c5d0b';
+
+/// See also [lastUpdatedLesson].
+@ProviderFor(lastUpdatedLesson)
+final lastUpdatedLessonProvider = AutoDisposeFutureProvider<Lesson?>.internal(
+  lastUpdatedLesson,
+  name: r'lastUpdatedLessonProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$lastUpdatedLessonHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef LastUpdatedLessonRef = AutoDisposeFutureProviderRef<Lesson?>;
+String _$lessonSelectHash() => r'58e2b345d8e69fa3ca7ef44d75f664e634a406b9';
+
+/// See also [lessonSelect].
+@ProviderFor(lessonSelect)
+const lessonSelectProvider = LessonSelectFamily();
+
+/// See also [lessonSelect].
+class LessonSelectFamily extends Family<AsyncValue<Lesson>> {
+  /// See also [lessonSelect].
+  const LessonSelectFamily();
+
+  /// See also [lessonSelect].
+  LessonSelectProvider call({
+    required int lessonId,
+  }) {
+    return LessonSelectProvider(
+      lessonId: lessonId,
+    );
+  }
+
+  @override
+  LessonSelectProvider getProviderOverride(
+    covariant LessonSelectProvider provider,
+  ) {
+    return call(
+      lessonId: provider.lessonId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'lessonSelectProvider';
+}
+
+/// See also [lessonSelect].
+class LessonSelectProvider extends AutoDisposeFutureProvider<Lesson> {
+  /// See also [lessonSelect].
+  LessonSelectProvider({
+    required int lessonId,
+  }) : this._internal(
+          (ref) => lessonSelect(
+            ref as LessonSelectRef,
+            lessonId: lessonId,
+          ),
+          from: lessonSelectProvider,
+          name: r'lessonSelectProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$lessonSelectHash,
+          dependencies: LessonSelectFamily._dependencies,
+          allTransitiveDependencies:
+              LessonSelectFamily._allTransitiveDependencies,
+          lessonId: lessonId,
+        );
+
+  LessonSelectProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.lessonId,
+  }) : super.internal();
+
+  final int lessonId;
+
+  @override
+  Override overrideWith(
+    FutureOr<Lesson> Function(LessonSelectRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: LessonSelectProvider._internal(
+        (ref) => create(ref as LessonSelectRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        lessonId: lessonId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<Lesson> createElement() {
+    return _LessonSelectProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is LessonSelectProvider && other.lessonId == lessonId;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, lessonId.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin LessonSelectRef on AutoDisposeFutureProviderRef<Lesson> {
+  /// The parameter `lessonId` of this provider.
+  int get lessonId;
+}
+
+class _LessonSelectProviderElement
+    extends AutoDisposeFutureProviderElement<Lesson> with LessonSelectRef {
+  _LessonSelectProviderElement(super.provider);
+
+  @override
+  int get lessonId => (origin as LessonSelectProvider).lessonId;
+}
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

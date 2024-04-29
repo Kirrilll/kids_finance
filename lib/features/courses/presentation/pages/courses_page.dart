@@ -27,6 +27,7 @@ class CoursesPage extends ConsumerWidget {
         courseRemoteDataSource: courseRemoteDataSource,
         lessonLocalDataSource: courseLocalDataSource
     ));
+    final lastLesson = ref.watch(lastUpdatedLessonProvider);
     final TextStyle? appTitleStyle = Theme.of(context).textTheme.headlineLarge;
     final TextStyle? titleStyle = Theme.of(context).textTheme.headlineMedium;
     return Scaffold(
@@ -70,14 +71,13 @@ class CoursesPage extends ConsumerWidget {
                               ),
                             ),
                             SizedBox(height: 12.w),
-                            // const LessonCard(
-                            //   id: 1,
-                            //   progress: 1,
-                            //   title: 'Финансовые цели',
-                            //   subTitle: '2 из 3 уроков',
-                            //   logo: 'assets/images/courseCard6.png',
-                            //   passingTypes: [ECoursePassingType.read],
-                            // ),
+                            lastLesson.when(
+                                data: (lesson) => lesson == null
+                                    ? const Center(child: Text('Вы еще не посещяли уроки'),)
+                                    : LessonCard.fromLesson(lesson),
+                                error: (_, __) => const Center(child: Text('Ошибка')),
+                                loading: () => const Center(child: CircularProgressIndicator())
+                            )
                           ],
                         )),
                   ),

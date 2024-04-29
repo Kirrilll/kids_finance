@@ -44,18 +44,6 @@ class CoursePage extends ConsumerWidget {
             ),
           ),
         ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: SizedBox.square(
-              dimension: 24.h,
-              child: SvgPicture.asset(
-                'assets/images/share.svg',
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),
-        ],
       ),
       body: courseSelect.when(
           data: (course) => SingleChildScrollView(
