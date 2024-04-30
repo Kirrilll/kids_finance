@@ -10,17 +10,18 @@ import '../../data/mappers/lesson_adapter.dart';
 part 'course_repository.g.dart';
 
 @Riverpod(keepAlive: true)
-class CourseStateRepository extends _$CourseStateRepository implements CourseRepositoryBase {
+class CourseStateRepository extends _$CourseStateRepository
+    implements CourseRepositoryBase {
   @override
-  Future<List<Course>> build({required CourseRemoteDataSource courseRemoteDataSource, required LessonLocalDataSource lessonLocalDataSource}) async {
+  Future<List<Course>> build(
+      {required CourseRemoteDataSource courseRemoteDataSource,
+      required LessonLocalDataSource lessonLocalDataSource}) async {
     return getAll();
   }
 
   @override
   Future<List<Course>> getAll() async {
-    return (await courseRemoteDataSource.getAll()).match(
-            (l) => [],
-            (r) async {
+    return (await courseRemoteDataSource.getAll()).match((l) => [], (r) async {
       final lessonsProgress = await lessonLocalDataSource.selectAll();
       return r
           .map((courseDto) => Course(
@@ -57,20 +58,17 @@ class CourseStateRepository extends _$CourseStateRepository implements CourseRep
 
   @override
   Future<void> updateLessonProgress(
-      {
-      required int lessonId,
-      required int passedChapterId}) async {
+      {required int lessonId, required int passedChapterId}) async {
     debugPrint('UPDATE IN REPO');
-    state = state.whenData((courses) => courses
-        .map((course) => course.copyWith.call(
-            lessons: course.lessons
-                .map((lesson) => lesson.id == lessonId
-                    ? lesson.copyWith.call(lastPassedChapterId: passedChapterId)
-                    : lesson)
-                .toList()))
-        .toList());
+    // state = state.whenData((courses) => courses
+    //     .map((course) => course.copyWith.call(
+    //         lessons: course.lessons
+    //             .map((lesson) => lesson.id == lessonId
+    //                 ? lesson.copyWith.call(lastPassedChapterId: passedChapterId)
+    //                 : lesson)
+    //             .toList()))
+    //     .toList());
     await lessonLocalDataSource.updateLessonProgress(
-        lessonId: lessonId,
-        passedChapterId: passedChapterId);
+        lessonId: lessonId, passedChapterId: passedChapterId);
   }
 }
