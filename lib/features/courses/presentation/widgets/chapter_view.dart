@@ -11,9 +11,8 @@ class ChapterView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Panel(
         child: ConstrainedBox(
-          constraints: BoxConstraints.expand(width: double.infinity, height: 300.h),
-          child: Text(content),
-        )
-    );
+      constraints: BoxConstraints.expand(width: double.infinity, height: 300.h),
+      child: Text(content),
+    ));
   }
 }

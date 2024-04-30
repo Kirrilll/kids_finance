@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kids_finance/core/constants.dart';
 import '../../domain/entity/e_passing_type.dart';
 import '../utils/extensions/course_passing_type_icon_extension.dart';
 
@@ -18,7 +19,11 @@ class LessonInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextStyle? headStyle = Theme.of(context).textTheme.headlineSmall;
-    final TextStyle? subStyle = Theme.of(context).textTheme.displayMedium;
+    final TextStyle? subStyle =
+        Theme.of(context).textTheme.displayMedium?.copyWith(
+              fontWeight: FontWeight.w400,
+              color: gray,
+            );
     return Column(
       crossAxisAlignment:
           center ? CrossAxisAlignment.center : CrossAxisAlignment.start,

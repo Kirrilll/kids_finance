@@ -28,15 +28,15 @@ class LessonCard extends ConsumerWidget {
       this.isLoading = false});
 
   factory LessonCard.fromLesson(Lesson lesson) => LessonCard(
-      id: lesson.id,
-      progress: lesson.lastPassedChapterId ?? 0,
-      title: lesson.title,
-      subTitle: lesson.chapters.isEmpty
-          ? '0 минут'
-          : '${lesson.chapters.length} по ${lesson.duration.inMinutes ~/ lesson.chapters.length} минут',
-      logo: lesson.logo,
-      passingTypes: lesson.passingType,
-  );
+        id: lesson.id,
+        progress: lesson.lastPassedChapterId ?? 0,
+        title: lesson.title,
+        subTitle: lesson.chapters.isEmpty
+            ? '0 минут'
+            : '${lesson.chapters.length} урока по ${lesson.duration.inMinutes ~/ lesson.chapters.length} минут',
+        logo: lesson.logo,
+        passingTypes: lesson.passingType,
+      );
 
   factory LessonCard.loading() => const LessonCard(
       progress: 0,

@@ -14,25 +14,26 @@ class LessonPage extends ConsumerStatefulWidget {
   final int lessonId;
 
   @override
-  ConsumerState<LessonPage> createState() =>  _LessonPageState();
+  ConsumerState<LessonPage> createState() => _LessonPageState();
 }
 
 class _LessonPageState extends ConsumerState<LessonPage> {
-
   final PageController chapterController = PageController();
 
-
   void onChangeChapter(int chapterIndex) {
-    ref.read(lessonViewModelProvider.call(lessonId: widget.lessonId).notifier).swipeChapter(chapterIndex);
+    ref
+        .read(lessonViewModelProvider.call(lessonId: widget.lessonId).notifier)
+        .swipeChapter(chapterIndex);
   }
 
   @override
   Widget build(BuildContext context) {
     final appBarTitleStyle = Theme.of(context).textTheme.headlineMedium;
-    final lesson = ref.watch(lessonViewModelProvider.call(lessonId: widget.lessonId));
+    final lesson =
+        ref.watch(lessonViewModelProvider.call(lessonId: widget.lessonId));
 
     return Scaffold(
-      appBar:  AppBar(
+      appBar: AppBar(
         leadingWidth: 200,
         leading: Padding(
           padding: const EdgeInsets.all(16),
@@ -55,34 +56,39 @@ class _LessonPageState extends ConsumerState<LessonPage> {
         ),
       ),
       body: lesson.whenOrNull(
-        fulfilled: (lesson, currChapterId) => Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                LinearProgressIndicator(
-                  value: ref.read(lessonViewModelProvider.call(lessonId: widget.lessonId).notifier).currChapterIndex() / lesson.chapters.length,
-                  minHeight: 8,
-                  color: const Color(0xFF537CE8),
-                  borderRadius: BorderRadius.circular(20),
+          fulfilled: (lesson, currChapterId) => Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    LinearProgressIndicator(
+                      value: ref
+                              .read(lessonViewModelProvider
+                                  .call(lessonId: widget.lessonId)
+                                  .notifier)
+                              .currChapterIndex() /
+                          lesson.chapters.length,
+                      minHeight: 8,
+                      color: const Color(0xFF537CE8),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    const SizedBox(height: 12),
+                    Expanded(
+                      child: PageView.builder(
+                          controller: chapterController,
+                          onPageChanged: onChangeChapter,
+                          itemCount: lesson.chapters.length,
+                          itemBuilder: (_, index) => Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: ChapterView(
+                                    content: lesson.chapters[index].content),
+                              )),
+                    )
+                  ],
                 ),
-                const SizedBox(height: 12),
-                Expanded(
-                  child: PageView.builder(
-                      controller: chapterController,
-                      onPageChanged: onChangeChapter,
-                      itemCount: lesson.chapters.length,
-                      itemBuilder: (_, index) => Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ChapterView(content: lesson.chapters[index].content),
-                      )
-                  ),
-                )
-              ],
-            ),
-        ),
-        loading: () => const Center(child: CircularProgressIndicator())
-      ),
+              ),
+          loading: () => const Center(child: CircularProgressIndicator())),
     );
   }
 }
