@@ -73,7 +73,7 @@ class CoursesPage extends ConsumerWidget {
                             SizedBox(height: 12.w),
                             lastLesson.when(
                                 data: (lesson) => lesson == null
-                                    ? const Center(child: Text('Вы еще не посещяли уроки'),)
+                                    ? const Center(child: Text('Вы еще не посещали уроки'),)
                                     : LessonCard.fromLesson(lesson),
                                 error: (_, __) => const Center(child: Text('Ошибка')),
                                 loading: () => const Center(child: CircularProgressIndicator())
